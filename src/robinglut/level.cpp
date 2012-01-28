@@ -60,6 +60,9 @@ namespace robinglut
 		}*/
 	}
 	
+	/**
+	 * Draws all arrows that have already been fired.
+         */
 	void level::draw_arrows()
 	{
 		std::vector<arrow*>::const_iterator it;
@@ -112,6 +115,12 @@ namespace robinglut
 		} @todo WTF? */
 	}
 
+	/**
+	 * Refreshes the x/y angle on mouse motion.
+	 * 
+         * @param x New X position.
+         * @param y New Y position.
+         */
 	void level::on_active_motion(int x, int y)
 	{
 		int diffx = x - lastx;

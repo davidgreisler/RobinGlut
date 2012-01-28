@@ -45,6 +45,16 @@ namespace robinglut
 		glDisable(GL_TEXTURE_2D);
 	}
 
+	/**
+	 * Keypress handler.
+	 * 
+	 * When 1, 2, 3, or 4 is pressed, an event is emitted for the selected
+	 * option.
+	 * 
+         * @param key Pressed key.
+         * @param x Ignored.
+         * @param y Ignored.
+         */
 	void menu::on_keypress(unsigned char key, int x, int y)
 	{
 		switch (key)

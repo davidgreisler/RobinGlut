@@ -28,7 +28,7 @@ namespace robinglut
 		robinglut::bow& bow;
 		
 		void print_text(float x, float y, float z, const char* text, float r, float g, float b, float a);
-		void draw_speed();
+		void draw_force();
 		void draw_background();
 		void draw_counts();
 	public:

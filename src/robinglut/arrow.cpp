@@ -10,13 +10,25 @@
 
 namespace robinglut
 {
-
+	/**
+	 * Creates a new arrow object using the given parameters.
+	 * 
+         * @param x X position where the arrow was fired.
+         * @param y Y position where the arrow was fired.
+         * @param z Z position where the arrow was fired.
+         * @param angle_x X angle in which the arrow was fired.
+         * @param angle_y Y angle in which the arrow was fired.
+         * @param force The force.
+         */
 	arrow::arrow(float x, float y, float z, float angle_x, float angle_y, float force)
 		: x(x), y(y), z(z), angle_x(angle_x), angle_y(angle_y), force(force)
 	{
 		this->start_time = glutGet(GLUT_ELAPSED_TIME);
 	}
 
+	/**
+	 * Displays the arrow at it's current position.
+         */
 	void arrow::display()
 	{
 		this->refresh_position();
@@ -33,6 +45,9 @@ namespace robinglut
 		glPopMatrix();
 	}
 
+	/**
+	 * Refreshs the current position of the arrow.
+         */
 	void arrow::refresh_position()
 	{
 		if (this->y > 0)

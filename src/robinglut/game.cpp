@@ -3,12 +3,20 @@
 
 namespace robinglut
 {
+	/**
+	 * Creates a new game object using the given renderer.
+	 * 
+         * @param renderer Renderer to use.
+         */
 	game::game(glut_renderer& renderer)
 		: renderer(renderer)
 	{
 		
 	}
 	
+	/**
+	 * Frees all used resources.
+         */
 	game::~game()
 	{
 		
@@ -24,6 +32,9 @@ namespace robinglut
 		this->game_over_event(123);
 	}
 	
+	/**
+	 * Starts a new game.
+         */
 	void game::start()
 	{
 		level* level1 = new level;

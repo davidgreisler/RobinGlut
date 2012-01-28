@@ -22,6 +22,14 @@ CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/robinglut
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Release=robinglut.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/robinglut.tar
+# Windows__nimm_das_hier_ configuration
+CND_PLATFORM_Windows__nimm_das_hier_=GNU-Linux-x86
+CND_ARTIFACT_DIR_Windows__nimm_das_hier_=dist/Windows__nimm_das_hier_/GNU-Linux-x86
+CND_ARTIFACT_NAME_Windows__nimm_das_hier_=robinglut
+CND_ARTIFACT_PATH_Windows__nimm_das_hier_=dist/Windows__nimm_das_hier_/GNU-Linux-x86/robinglut
+CND_PACKAGE_DIR_Windows__nimm_das_hier_=dist/Windows__nimm_das_hier_/GNU-Linux-x86/package
+CND_PACKAGE_NAME_Windows__nimm_das_hier_=robinglut.tar
+CND_PACKAGE_PATH_Windows__nimm_das_hier_=dist/Windows__nimm_das_hier_/GNU-Linux-x86/package/robinglut.tar
 #
 # include compiler specific variables
 #

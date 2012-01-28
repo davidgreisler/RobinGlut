@@ -8,7 +8,12 @@
 
 namespace robinglut
 {
-
+	/**
+	 * Creates a new user interface using the given bow as data source for
+	 * the remaining arrows/force display.
+	 * 
+         * @param bow Bow to use as data source.
+         */
 	user_interface::user_interface(robinglut::bow& bow)
 		: bow(bow)
 	{
@@ -21,12 +26,15 @@ namespace robinglut
          */
 	void user_interface::display()
 	{
-		this->draw_speed();
+		this->draw_force();
 		this->draw_background();
 		this->draw_counts();
 	}
 	
-	void user_interface::draw_speed()
+	/**
+	 * Draws the bow force, respectively how strong the bow is drawn.
+         */
+	void user_interface::draw_force()
 	{
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
