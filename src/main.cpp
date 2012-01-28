@@ -8,7 +8,7 @@
  * RobinGlut - 3D first person shooter with bow and arrow.
  * 
  * @author David Greisler <kontakt@davidgreisler.de>
- * @author Daniil Tomilow
+ * @author Daniil Tomilow <cisminor@googlemail.com>
  * @author Eric Haller
  * @param argc Argument count.
  * @param argv Command line arguments.
