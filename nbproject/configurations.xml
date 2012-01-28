@@ -13,6 +13,7 @@
       </logicalFolder>
       <logicalFolder name="f2" displayName="robinglut" projectFiles="true">
         <itemPath>src/robinglut/arrow.hpp</itemPath>
+        <itemPath>src/robinglut/bow.hpp</itemPath>
         <itemPath>src/robinglut/game.hpp</itemPath>
         <itemPath>src/robinglut/glut_renderer.hpp</itemPath>
         <itemPath>src/robinglut/level.hpp</itemPath>
@@ -34,6 +35,7 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="robinglut" projectFiles="true">
         <itemPath>src/robinglut/arrow.cpp</itemPath>
+        <itemPath>src/robinglut/bow.cpp</itemPath>
         <itemPath>src/robinglut/game.cpp</itemPath>
         <itemPath>src/robinglut/glut_renderer.cpp</itemPath>
         <itemPath>src/robinglut/level.cpp</itemPath>

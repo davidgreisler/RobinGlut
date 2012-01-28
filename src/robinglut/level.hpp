@@ -40,8 +40,13 @@ namespace robinglut
 		 */
 		GLuint area_center_texture;
 		
-		robinglut::arrow* arrow;
+		/**
+		 * The user interface.
+		 */
 		user_interface* ui;
+		
+		robinglut::arrow* arrow;
+		
 		float anglex;
 		float angley;
 		float anglez;

@@ -44,6 +44,8 @@ namespace robinglut
 		~robin_glut();
 
 		int run();
+		
+		static void refresh(int);
 	};
 }
 

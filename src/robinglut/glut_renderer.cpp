@@ -287,4 +287,14 @@ namespace robinglut
 			registered_renderer->get_current_scene()->on_active_motion(x, y);
 		}
 	}
+	
+	/**
+	 * Returns the currently registered renderer.
+	 * 
+         * @return The currently registered renderer.
+         */
+	glut_renderer* glut_renderer::get_registered_renderer()
+	{
+		return registered_renderer;
+	}
 }

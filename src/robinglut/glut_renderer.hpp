@@ -28,7 +28,7 @@ namespace robinglut
 		~glut_renderer();
 
 		void register_renderer();
-
+		
 		void set_current_scene(scene* scene);
 		scene* const get_current_scene() const;
 		
@@ -42,6 +42,8 @@ namespace robinglut
 		static void on_keypress(unsigned char key, int x, int y);
 		static void on_mouse(int button, int state, int x, int y);
 		static void on_active_motion(int x, int y);
+		
+		static glut_renderer* get_registered_renderer();
 	};
 }
 

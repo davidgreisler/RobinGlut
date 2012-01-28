@@ -43,6 +43,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/robinglut/robin_glut.o \
 	${OBJECTDIR}/src/robinglut/game.o \
 	${OBJECTDIR}/pfeil.o \
+	${OBJECTDIR}/src/robinglut/bow.o \
 	${OBJECTDIR}/src/robinglut/raw_loader.o \
 	${OBJECTDIR}/src/robinglut/arrow.o
 
@@ -115,6 +116,11 @@ ${OBJECTDIR}/pfeil.o: pfeil.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/pfeil.o pfeil.cpp
+
+${OBJECTDIR}/src/robinglut/bow.o: src/robinglut/bow.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/bow.o src/robinglut/bow.cpp
 
 ${OBJECTDIR}/src/robinglut/raw_loader.o: src/robinglut/raw_loader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut

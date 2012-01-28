@@ -81,4 +81,15 @@ namespace robinglut
 		
 		return 0;
 	}
+	
+	/**
+	 * Emits a redisplay event every 1/25 seconds.
+	 * 
+         * @param ignored.
+         */
+	void robin_glut::refresh(int)
+	{
+		glut_renderer::get_registered_renderer()->redisplay();
+		glut_renderer::get_registered_renderer()->set_timeout(25, &robin_glut::refresh, 0);
+	}
 }
