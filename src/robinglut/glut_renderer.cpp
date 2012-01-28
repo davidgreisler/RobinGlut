@@ -53,6 +53,22 @@ namespace robinglut
 	{
 
 	}
+	
+	/**
+	 * Starts a timer and calls the given function after the given amount of
+	 * milliseconds with the given value as argument.
+	 * 
+         * @param milliseconds How many milliseconds to wait before calling the
+	 *        function.
+         * @param function_pointer Function to call.
+         * @param value Value to pass.
+         */
+	void glut_renderer::set_timeout(int milliseconds,
+		                        glut_renderer::timer_function_pointer_t function_pointer,
+		                        int value)
+	{
+		glutTimerFunc(milliseconds, function_pointer, value);
+	}
 
 	/**
 	 * Initializes lighting.

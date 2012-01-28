@@ -22,6 +22,8 @@ namespace robinglut
 		void initialize_lighting();
 		void initialize();
 	public:
+		typedef void (*timer_function_pointer_t)(int);
+		
 		glut_renderer(int argc, char** argv);
 		~glut_renderer();
 
@@ -31,6 +33,9 @@ namespace robinglut
 		scene* const get_current_scene() const;
 		
 		void redisplay();
+		void set_timeout(int milliseconds,
+		                 timer_function_pointer_t function_pointer,
+		                 int value);
 
 		static void display();
 		static void reshape(int width, int height);
