@@ -206,7 +206,7 @@ namespace event
 	void event2_base<A1, A2>::operator+=(event2_base::callback_t& cb)
 	{
 		typename event2_base::callback_list_it_t result;
-		callback_equals<event2_base::callback_t> predicate;
+		callback_equals<typename event2_base::callback_t> predicate;
 		result = std::find_if(this->callbacks.begin(),
 		                      this->callbacks.end(), 
 				      predicate);
@@ -226,7 +226,7 @@ namespace event
 	void event2_base<A1, A2>::operator-=(event2_base::callback_t& cb)
 	{
 		typename event2_base::callback_list_it_t result;
-		callback_equals<event2_base::callback_t> predicate;
+		callback_equals<typename event2_base::callback_t> predicate;
 		result = std::find_if(this->callbacks.begin(),
 		                      this->callbacks.end(), 
 				      predicate);
