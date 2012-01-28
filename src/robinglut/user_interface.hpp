@@ -3,6 +3,8 @@
 
 #include <GL/gl.h>
 
+#include "bow.hpp"
+
 namespace robinglut
 {
 	class arrow;
@@ -19,14 +21,18 @@ namespace robinglut
 		 */
 		GLuint background_image;
 		
-		arrow* p;
+		/**
+		 * Reference to the player's bow, used to retrieve force/speed
+		 * and remaining arrows.
+		 */
+		robinglut::bow& bow;
 		
 		void print_text(float x, float y, float z, const char* text, float r, float g, float b, float a);
 		void draw_speed();
 		void draw_background();
 		void draw_counts();
 	public:
-		user_interface(arrow* p);
+		user_interface(robinglut::bow& bow);
 		
 		void display();
 	};

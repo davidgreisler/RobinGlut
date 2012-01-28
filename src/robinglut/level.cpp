@@ -1,7 +1,9 @@
 #include <GL/gl.h>
+#include <iostream>
 
 #include "level.hpp"
 #include "raw_loader.hpp"
+#include "robin_glut.hpp"
 
 namespace robinglut
 {
@@ -12,8 +14,8 @@ namespace robinglut
 	level::level()
 		: anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0)
 	{
-		this->arrow = new robinglut::arrow(2,9,0);
-		this->ui = new user_interface(arrow); 
+		this->bow = new robinglut::bow(10);
+		this->ui = new user_interface(*(this->bow));
 		
 		raw_loader loader;
 		this->butt_texture = loader.load_file("images/scheibe1.raw", 203, 208, false);
@@ -33,7 +35,6 @@ namespace robinglut
 	void level::display()
 	{
 		this->ui->display();
-		this->arrow->display();
 		
 		glRotatef(this->anglex, 0, 0, 1); // Blickwinkel Rotieren
 		glRotatef(this->angley, 0, 1, 0);
@@ -44,7 +45,8 @@ namespace robinglut
 		this->draw_ground();
 		this->draw_sky();
 		this->draw_surrounding_area();
-
+		this->draw_arrows();
+		
 		/*switch (level)
 		{
 			case 1:
@@ -56,6 +58,15 @@ namespace robinglut
 
 				break;
 		}*/
+	}
+	
+	void level::draw_arrows()
+	{
+		std::vector<arrow*>::const_iterator it;
+		for (it = this->arrows.begin(); it != this->arrows.end(); it++)
+		{
+			(*it)->display();
+		}
 	}
 	
 	/**
@@ -82,11 +93,12 @@ namespace robinglut
 			case GLUT_RIGHT_BUTTON:
 				if (state == 0)
 				{
-					this->arrow->activeSpannen();
+					this->bow->start_drawing();
 				}
 				else
 				{
-					this->arrow->stopSpannen();
+					this->arrows.push_back(new robinglut::arrow(2,9,0, this->anglex, this->angley, this->bow->get_force()));
+					this->bow->fire_arrow();
 				}
 				break;
 			default:

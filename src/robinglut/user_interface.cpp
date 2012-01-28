@@ -9,7 +9,8 @@
 namespace robinglut
 {
 
-	user_interface::user_interface(arrow* p) : p(p)
+	user_interface::user_interface(robinglut::bow& bow)
+		: bow(bow)
 	{
 		raw_loader loader;
 		this->background_image = loader.load_file("images/top.raw", 1080, 85, false);
@@ -34,8 +35,8 @@ namespace robinglut
 		glColor3f(1, 0, 0);
 
 		glVertex3f(2, 10, -1.3);
-		glVertex3f(2, 10.1 + this->p->getSpeed() / 15, -1.3);
-		glVertex3f(2, 10.1 + this->p->getSpeed() / 15, -1.2);
+		glVertex3f(2, 10.1 + this->bow.get_force() / 15, -1.3);
+		glVertex3f(2, 10.1 + this->bow.get_force() / 15, -1.2);
 		glVertex3f(2, 10, -1.2);
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
@@ -90,7 +91,7 @@ namespace robinglut
 
 		// Arrows left.
 		
-		ss << this->p->get_arrow_count();
+		ss << this->bow.get_arrow_count();
 		this->print_text(1.5, 10.92, 0.345, ss.str().c_str(), 0, 0, 0, 0.8);
 		ss.str("");
 	}

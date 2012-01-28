@@ -77,6 +77,7 @@ namespace robinglut
 	int robin_glut::run()
 	{
 		this->renderer.set_current_scene(&this->menu);
+		this->renderer.set_timeout(0, &robin_glut::refresh, 0);
 		this->renderer.register_renderer();
 		
 		return 0;

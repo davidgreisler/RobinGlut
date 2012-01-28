@@ -1,8 +1,11 @@
 #ifndef LEVEL_HPP
 #define	LEVEL_HPP
 
+#include <vector>
+
 #include "scene.hpp"
 #include "arrow.hpp"
+#include "bow.hpp"
 #include "user_interface.hpp"
 #include "../event/event.hpp"
 
@@ -45,7 +48,15 @@ namespace robinglut
 		 */
 		user_interface* ui;
 		
-		robinglut::arrow* arrow;
+		/**
+		 * The bow used to fire arrows.
+		 */
+		robinglut::bow* bow;
+		
+		/**
+		 * The arrows fired by the player.
+		 */
+		std::vector<robinglut::arrow*> arrows;
 		
 		float anglex;
 		float angley;
@@ -55,6 +66,7 @@ namespace robinglut
 		unsigned char Buttons[3];
 		
 		void draw_butt(int x, int y, int z);
+		void draw_arrows();
 		void draw_ground();
 		void draw_sky();
 		void draw_surrounding_area();
