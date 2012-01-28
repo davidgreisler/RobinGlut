@@ -37,7 +37,7 @@ namespace robinglut
 		glEnable(GL_TEXTURE_2D);
 		glColor3f(1, 1, 1);
 		glRotatef(-this->angle_y, 0, 1, 0);
-		glTranslatef(this->x, this->y, this->z);
+		glTranslatef(this->x, this->y, 0 );
 		glRotatef(270, 0, 0, 1);
 		glScalef(1, 5, 1);
 		drawpfeil();
@@ -60,6 +60,9 @@ namespace robinglut
 			this->x += x;
 			this->y += -9.81 / 2 * t * t + this->force * t * std::sin(this->angle_x * PI / 180 * -1);
 			
+                        //Die Z-Achse zum prüfen der Kollision
+                        this->z = this->x * tan(this->angle_y*PI/180);
+                        
 			if (this->y < 0)
 			{
 				this->y = 0;
