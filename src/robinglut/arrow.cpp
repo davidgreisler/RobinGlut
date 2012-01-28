@@ -6,7 +6,6 @@
 #include "arrow.hpp"
 #include "../../pfeil.hpp"
 
-#define PI 3.14159265358979323846 
 
 namespace robinglut
 {
@@ -55,13 +54,13 @@ namespace robinglut
 			int time = glutGet(GLUT_ELAPSED_TIME);
 
 			float t = (float) (time - this->start_time) / 1000;
-			float x = (this->force * t) * std::cos(this->angle_x * PI / 180 * -1);
+			float x = (this->force * t) * std::cos(this->angle_x * M_PI / 180 * -1);
 
 			this->x += x;
-			this->y += -9.81 / 2 * t * t + this->force * t * std::sin(this->angle_x * PI / 180 * -1);
+			this->y += -9.81 / 2 * t * t + this->force * t * std::sin(this->angle_x * M_PI / 180 * -1);
 			
                         //Die Z-Achse zum prüfen der Kollision
-                        this->z = this->x * tan(this->angle_y*PI/180);
+                        this->z = this->x * tan(this->angle_y*M_PI/180);
                         
 			if (this->y < 0)
 			{
