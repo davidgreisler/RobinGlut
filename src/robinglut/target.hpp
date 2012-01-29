@@ -22,6 +22,7 @@ private:
     int width,height;
     float x,y,z;
     GLuint texture;
+    bool hit;
 
 };
 

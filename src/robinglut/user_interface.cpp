@@ -126,7 +126,7 @@ namespace robinglut
 		
 		// Points
 		
-		ss << "0";
+		ss << this->bow.get_score();
 		this->print_text(1.5, 10.92, -0.14, ss.str().c_str(), 0, 0, 0, 0.8);
 		ss.str("");
 

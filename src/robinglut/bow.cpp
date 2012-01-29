@@ -6,11 +6,12 @@ namespace robinglut
 {
 	/**
 	 * Creates a new bow object with the given arrow count.
+         * Vlt besser Player und nicht bow?
 	 * 
          * @param arrow_count How many arrows should be in the quiver.
          */
 	bow::bow(int arrow_count)
-		: arrow_count(arrow_count), start_time(0)
+		: arrow_count(arrow_count), start_time(0), score(0)
 	{
 		
 	}
@@ -79,6 +80,30 @@ namespace robinglut
 		return this->arrow_count;
 	}
 	
+        
+        /**
+	 * Returns the score
+	 * 
+         * @return Players Score
+         */
+        int bow::get_score() const
+        {
+            return this->score;
+            
+        }
+        
+        
+        /**
+	 * Player has hit a target
+	 * 
+         */
+        void bow::hit_one()
+        {
+              this->score++;
+            
+        }
+        
+        
 	/**
 	 * Displays the bow.
          */

@@ -65,15 +65,18 @@ namespace robinglut
                 std::vector<target*>::const_iterator it;
 		for (it = this->targets.begin(); it != this->targets.end(); it++)
 		{
-                        if(this->arrow_current){
-
-                            if(! ((*it)->check_collision(this->arrow_current->getX(),
-                                                this->arrow_current->getY(),
-                                                this->arrow_current->getZ())))
-                            {
-                                (*it)->display();
-                            }
-                        }else (*it)->display();
+                        
+                        // Check collision             
+                        if((this->arrow_current && !this->arrow_current->getHit() &&
+                            (*it)->check_collision(this->arrow_current->getX(),
+                                                   this->arrow_current->getY(),
+                                                   this->arrow_current->getZ())))
+                            {   
+                            //Getroffen 
+                            this->arrow_current->hit();
+                            this->bow->hit_one();
+                        }
+                 (*it)->display();
 		}
         
         }

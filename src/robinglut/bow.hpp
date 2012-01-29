@@ -13,6 +13,7 @@ namespace robinglut
 		 * How many arrows are left in the quiver.
 		 */
 		int arrow_count;
+                int score;
 		
 		/**
 		 * When the drawing started.
@@ -27,6 +28,8 @@ namespace robinglut
 		
 		float get_force() const;
 		int get_arrow_count() const;
+                int get_score() const;
+                void hit_one();
 		
 		void display();
 	};

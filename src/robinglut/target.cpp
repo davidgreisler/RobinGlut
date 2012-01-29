@@ -21,11 +21,12 @@ namespace robinglut
          * @param texture Targets texture    
          */
     target::target(float x, float y,float z, int width, int height,  GLuint texture) : 
-    width(width), height(height), x(x),y(y), z(z), texture(texture) {
+    width(width), height(height), x(x),y(y), z(z), texture(texture), hit(false) {
     }
 
 
     void target::display(){
+       
             glEnable(GL_TEXTURE_2D);
                     glBindTexture(GL_TEXTURE_2D, this->texture);
                     glColor3f(1, 1, 1);
@@ -52,8 +53,10 @@ namespace robinglut
                && arrow_y >= this->y
                && arrow_y <= this->y + this->height
                && arrow_z >= this->z
-               && arrow_z <= this->z + this->width)
-            return true;
+               && arrow_z <= this->z + this->width){
+            // Das Ziel wurde getroffen
+            this->hit = true;
+            return true;}
             return false;
        
   

@@ -49,6 +49,12 @@ namespace robinglut
 		 * The force/speed with which this arrow was fired.
 		 */
 		float force;
+                
+                /*
+                 * Der Pfeil hat getroffen
+                 */
+                
+                bool hitted;
 		
 	public:
 		arrow(float x, float y, float z, float angle_x, float angle_y, float force);
@@ -58,6 +64,8 @@ namespace robinglut
                 float getY();
                 float getZ();
 		void display();
+                void hit();
+                bool getHit();
 	};
 }
 

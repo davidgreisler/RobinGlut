@@ -20,7 +20,7 @@ namespace robinglut
          * @param force The force.
          */
 	arrow::arrow(float x, float y, float z, float angle_x, float angle_y, float force)
-		: x(x), y(y), z(z), angle_x(angle_x), angle_y(angle_y), force(force), angle_arrow(0)
+		: x(x), y(y), z(z), angle_x(angle_x), angle_y(angle_y), force(force), angle_arrow(0), hitted(false)
 	{
 		this->start_time = glutGet(GLUT_ELAPSED_TIME);
 	}
@@ -53,13 +53,24 @@ namespace robinglut
         float  arrow::getY(){return this->y;}
         float  arrow::getZ(){return this->z;}
         
+        /**
+         * Set Arrow that it hit the target
+         */
+        void arrow::hit(){this->hitted = true;}
+        
+        
+        /* Is this Arrow hit a Target?*/
+        bool arrow::getHit(){return this->hitted;}
+        
         
 	/**
 	 * Refreshs the current position of the arrow.
          */
 	void arrow::refresh_position()
 	{
-		if (this->y > 0)
+                if(this->hitted) return;
+                //refesh if arrow over y 0 or arrow is not hit
+		if (this->y > 0 )
 		{
 			int time = glutGet(GLUT_ELAPSED_TIME);
 
@@ -71,13 +82,9 @@ namespace robinglut
 			
                         this->z = this->x * std::tan(this->angle_y*M_PI/180);
                         this->angle_arrow = std::atan((9 - this->x)*M_PI / 180);
-                        
-                        std::cout << "X:" << this->x << "Y:" << this->y << "Z:" << this->z << std::endl;
-                        
-			if (this->y < 0)
-			{
-				this->y = 0;
-			}
+
+			if (this->y < 0) this->y = 0;
+			
 		}
 	}
 }
