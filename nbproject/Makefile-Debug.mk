@@ -45,7 +45,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/pfeil.o \
 	${OBJECTDIR}/src/robinglut/raw_loader.o \
 	${OBJECTDIR}/src/robinglut/bow.o \
-	${OBJECTDIR}/src/robinglut/arrow.o
+	${OBJECTDIR}/src/robinglut/arrow.o \
+	${OBJECTDIR}/src/robinglut/target.o \
+	${OBJECTDIR}/src/robinglut/heightmap.o
 
 
 # C Compiler Flags
@@ -131,6 +133,16 @@ ${OBJECTDIR}/src/robinglut/arrow.o: src/robinglut/arrow.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/arrow.o src/robinglut/arrow.cpp
+
+${OBJECTDIR}/src/robinglut/target.o: src/robinglut/target.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/target.o src/robinglut/target.cpp
+
+${OBJECTDIR}/src/robinglut/heightmap.o: src/robinglut/heightmap.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/heightmap.o src/robinglut/heightmap.cpp
 
 # Subprojects
 .build-subprojects:

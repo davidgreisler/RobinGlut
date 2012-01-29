@@ -20,7 +20,7 @@ namespace robinglut
          * @param force The force.
          */
 	arrow::arrow(float x, float y, float z, float angle_x, float angle_y, float force)
-		: x(x), y(y), z(z), angle_x(angle_x), angle_y(angle_y), force(force)
+		: x(x), y(y), z(z), angle_x(angle_x), angle_y(angle_y), force(force), angle_arrow(0)
 	{
 		this->start_time = glutGet(GLUT_ELAPSED_TIME);
 	}
@@ -35,9 +35,12 @@ namespace robinglut
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 		glColor3f(1, 1, 1);
+              
+                
+		glTranslatef(this->x, this->y, this->z );
 		glRotatef(-this->angle_y, 0, 1, 0);
-		glTranslatef(this->x, this->y, 0 );
-		glRotatef(270, 0, 0, 1);
+                glRotatef(270, 0, 0, 1);
+          
 		glScalef(1, 5, 1);
 		drawpfeil();
 		glDisable(GL_TEXTURE_2D);
@@ -60,7 +63,9 @@ namespace robinglut
 			this->y += -9.81 / 2 * t * t + this->force * t * std::sin(this->angle_x * M_PI / 180 * -1);
 			
                         //Die Z-Achse zum prüfen der Kollision
-                        this->z = this->x * tan(this->angle_y*M_PI/180);
+                        this->z = this->x * std::tan(this->angle_y*M_PI/180);
+                        this->angle_arrow = std::atan((9 - this->x)*M_PI / 180);
+                        
                         
 			if (this->y < 0)
 			{

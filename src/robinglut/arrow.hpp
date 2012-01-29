@@ -35,6 +35,11 @@ namespace robinglut
 		 */
 		float angle_y;
 		
+                /*
+                 * angle arrow 
+                 */
+                float angle_arrow;
+                
 		/**
 		 * Time when the arrow was fired.
 		 */

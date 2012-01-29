@@ -82,8 +82,6 @@ namespace robinglut
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
-                
-                glPushMatrix();  
 	}
         
 	/**

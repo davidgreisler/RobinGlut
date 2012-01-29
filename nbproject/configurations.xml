@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="79">
+<configurationDescriptor version="80">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -21,6 +21,7 @@
         <itemPath>src/robinglut/raw_loader.hpp</itemPath>
         <itemPath>src/robinglut/robin_glut.hpp</itemPath>
         <itemPath>src/robinglut/scene.hpp</itemPath>
+        <itemPath>src/robinglut/target.hpp</itemPath>
         <itemPath>src/robinglut/user_interface.hpp</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -43,6 +44,7 @@
         <itemPath>src/robinglut/raw_loader.cpp</itemPath>
         <itemPath>src/robinglut/robin_glut.cpp</itemPath>
         <itemPath>src/robinglut/scene.cpp</itemPath>
+        <itemPath>src/robinglut/target.cpp</itemPath>
         <itemPath>src/robinglut/user_interface.cpp</itemPath>
       </logicalFolder>
       <itemPath>src/main.cpp</itemPath>
@@ -58,6 +60,8 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>src/robinglut/heightmap.cpp</itemPath>
+    <itemPath>src/robinglut/heightmap.hpp</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
