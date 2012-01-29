@@ -119,20 +119,43 @@ namespace robinglut
 			
 			if (GLUT_DOWN == state)
 			{
-				this->bow->start_drawing();
+				this->start_drawing();
 			}
 			else
 			{
-				last_fired_arrow = new arrow(2, 9, 0, 
-				                             this->anglex, this->angley, 
-				                             this->bow->get_force(),
-				                             this->targets);
-				this->arrows.push_back(last_fired_arrow);
-				this->bow->fire_arrow();
+				this->fire_arrow();
 			}
 		}
 		
 		this->button_pressed[button_idx] = ((GLUT_DOWN == state) ? true : false);
+	}
+	
+	/**
+	 * Starts drawing the bow (if possible, e.g. enough arrows are in the 
+	 * quiver).
+         */
+	void level::start_drawing()
+	{
+		if (this->bow->get_arrow_count() > 0)
+		{
+			this->bow->start_drawing();
+		}
+	}
+
+	/**
+	 * Ends drawing and fires the arrow (if applicable).
+         */
+	void level::fire_arrow()
+	{
+		if (this->bow->is_drawing())
+		{
+			last_fired_arrow = new arrow(2, 9, 0,
+						this->anglex, this->angley,
+						this->bow->get_force(),
+						this->targets);
+			this->arrows.push_back(last_fired_arrow);
+			this->bow->fire_arrow();
+		}
 	}
 
 	/**

@@ -97,6 +97,9 @@ namespace robinglut
                 void check_collision();
 		void increase_score(int);
 		
+		void start_drawing();
+		void fire_arrow();
+		
 	public:
 		level();
 		
