@@ -6,7 +6,6 @@
 #include "arrow.hpp"
 #include "../../pfeil.hpp"
 
-#define PI 3.14159265358979323846 
 
 namespace robinglut
 {
@@ -21,7 +20,7 @@ namespace robinglut
          * @param force The force.
          */
 	arrow::arrow(float x, float y, float z, float angle_x, float angle_y, float force)
-		: x(x), y(y), z(z), angle_x(angle_x), angle_y(angle_y), force(force)
+		: x(x), y(y), z(z), angle_x(angle_x), angle_y(angle_y), force(force), angle_arrow(0)
 	{
 		this->start_time = glutGet(GLUT_ELAPSED_TIME);
 	}
@@ -36,15 +35,25 @@ namespace robinglut
 		glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
 		glColor3f(1, 1, 1);
+              
+                
+		glTranslatef(this->x, this->y, this->z );
 		glRotatef(-this->angle_y, 0, 1, 0);
-		glTranslatef(this->x, this->y, this->z);
-		glRotatef(270, 0, 0, 1);
+                glRotatef(270, 0, 0, 1);
+          
 		glScalef(1, 5, 1);
 		drawpfeil();
 		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 	}
-
+        /*
+         * Getter for x,y,z
+         */
+        float  arrow::getX(){return this->x;}
+        float  arrow::getY(){return this->y;}
+        float  arrow::getZ(){return this->z;}
+        
+        
 	/**
 	 * Refreshs the current position of the arrow.
          */
@@ -55,11 +64,16 @@ namespace robinglut
 			int time = glutGet(GLUT_ELAPSED_TIME);
 
 			float t = (float) (time - this->start_time) / 1000;
-			float x = (this->force * t) * std::cos(this->angle_x * PI / 180 * -1);
+			float x = (this->force * t) * std::cos(this->angle_x * M_PI / 180 * -1);
 
 			this->x += x;
-			this->y += -9.81 / 2 * t * t + this->force * t * std::sin(this->angle_x * PI / 180 * -1);
+			this->y += -9.81 / 2 * t * t + this->force * t * std::sin(this->angle_x * M_PI / 180 * -1);
 			
+                        this->z = this->x * std::tan(this->angle_y*M_PI/180);
+                        this->angle_arrow = std::atan((9 - this->x)*M_PI / 180);
+                        
+                        std::cout << "X:" << this->x << "Y:" << this->y << "Z:" << this->z << std::endl;
+                        
 			if (this->y < 0)
 			{
 				this->y = 0;

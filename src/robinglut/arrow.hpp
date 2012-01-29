@@ -35,6 +35,11 @@ namespace robinglut
 		 */
 		float angle_y;
 		
+                /*
+                 * angle arrow 
+                 */
+                float angle_arrow;
+                
 		/**
 		 * Time when the arrow was fired.
 		 */
@@ -49,7 +54,9 @@ namespace robinglut
 		arrow(float x, float y, float z, float angle_x, float angle_y, float force);
 		
 		void refresh_position();
-
+                float getX();
+                float getY();
+                float getZ();
 		void display();
 	};
 }

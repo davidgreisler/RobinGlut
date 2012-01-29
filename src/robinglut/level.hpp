@@ -5,7 +5,9 @@
 
 #include "scene.hpp"
 #include "arrow.hpp"
+#include "target.hpp"
 #include "bow.hpp"
+#include "heightmap.hpp"
 #include "user_interface.hpp"
 #include "../event/event.hpp"
 
@@ -52,7 +54,12 @@ namespace robinglut
 		 * The bow used to fire arrows.
 		 */
 		robinglut::bow* bow;
+                /*
+                 * Heightmap terrain
+                 */
+                robinglut::heightmap* map;
 		
+                               
 		/**
 		 * The arrows fired by the player.
 		 */
@@ -63,17 +70,31 @@ namespace robinglut
 		 */
 		bool button_pressed[3];
 		
+                /*
+                 * Current Arrow
+                 */
+                
+                arrow* arrow_current;
+                
+                /**
+		 * The targets
+		 */
+		std::vector<robinglut::target*> targets;
+                
+                
 		float anglex;
 		float angley;
 		float anglez;
 		int lastx;
 		int lasty;
 		
-		void draw_butt(int x, int y, int z);
+		
+                void draw_targets();
 		void draw_arrows();
 		void draw_ground();
 		void draw_sky();
 		void draw_surrounding_area();
+                void check_collision();
 		
 	public:
 		level();

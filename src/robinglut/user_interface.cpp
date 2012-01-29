@@ -1,6 +1,7 @@
 #include <cstring>
 #include <GL/glut.h>
 #include <sstream>
+#include <math.h>
 
 #include "user_interface.hpp"
 #include "raw_loader.hpp"
@@ -26,11 +27,43 @@ namespace robinglut
          */
 	void user_interface::display()
 	{
+                this->draw_crosshair();
 		this->draw_force();
 		this->draw_background();
 		this->draw_counts();
 	}
-	
+        
+        /*
+         * Draw the Crosshair 
+         * TODO: Ist noch nicht MIttig
+         */
+        
+        void user_interface::draw_crosshair(){
+                float x,y;
+                float radius = 0.3;
+            
+                glBegin(GL_LINE_SMOOTH);
+                glColor4f(0.0f,1.0f,0.0f, 0.5f);
+               
+
+                x = (float)radius * cos(359 * M_PI/180.0f);
+                y = (float)radius * sin(359 * M_PI/180.0f);
+                for(int j = 0; j < 360; j++)
+                {       
+                    glVertex3f( 10,y+10,x);
+                    x = (float)radius * cos(j * M_PI/180.0f);
+                    y = (float)radius * sin(j * M_PI/180.0f);
+                    glVertex3f(10,y+10,x);
+                }
+                glEnd();
+                glPopMatrix();
+
+        }
+        
+        
+        
+        
+        
 	/**
 	 * Draws the bow force, respectively how strong the bow is drawn.
          */
@@ -50,7 +83,7 @@ namespace robinglut
 		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 	}
-
+        
 	/**
 	 * Draws the background image.
          */

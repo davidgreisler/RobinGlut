@@ -5,6 +5,7 @@
 #include "raw_loader.hpp"
 #include "robin_glut.hpp"
 
+
 namespace robinglut
 {
 
@@ -14,9 +15,12 @@ namespace robinglut
 	level::level()
 		: anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0)
 	{
+                
 		this->bow = new robinglut::bow(10);
 		this->ui = new user_interface(*(this->bow));
-		
+
+                //this->map = new robinglut::heightmap("images/tesseract.raw", 120, 120);
+                
 		raw_loader loader;
 		this->butt_texture = loader.load_file("images/scheibe1.raw", 203, 208, false);
 		this->ground_texture = loader.load_file("images/boden.raw", 410, 410, false);
@@ -27,6 +31,10 @@ namespace robinglut
 		this->button_pressed[0] = false;
 		this->button_pressed[1] = false;
 		this->button_pressed[2] = false;
+
+		this->targets.push_back(new robinglut::target(50,10,0,5.0,5.0, this->butt_texture));
+		this->targets.push_back(new robinglut::target(50,10,10,5.0,5.0, this->butt_texture));
+		this->targets.push_back(new robinglut::target(50,10,-10,5.0,5.0, this->butt_texture));
 	}
 	
 	/**
@@ -40,17 +48,33 @@ namespace robinglut
 		glRotatef(this->angley, 0, 1, 0);
 		
 		this->bow->display();
-		
-		this->draw_butt(50, 10, -10);
-		this->draw_butt(50, 10, 0);
-		this->draw_butt(50, 10, 10);
+
+                this->draw_targets();
 		this->draw_ground();
 		this->draw_sky();
 		this->draw_surrounding_area();
-		this->draw_arrows();
-		
 	}
-	
+	/* 
+         *      Draw the targets
+         */
+        
+        void level::draw_targets(){
+                std::vector<target*>::const_iterator it;
+		for (it = this->targets.begin(); it != this->targets.end(); it++)
+		{
+                        if(this->arrow_current){
+
+                            if(! ((*it)->check_collision(this->arrow_current->getX(),
+                                                this->arrow_current->getY(),
+                                                this->arrow_current->getZ())))
+                            {
+                                (*it)->display();
+                            }
+                        }else (*it)->display();
+		}
+        
+        }
+
 	/**
 	 * Draws all arrows that have already been fired.
          */
@@ -133,30 +157,7 @@ namespace robinglut
 		glutPostRedisplay();
 	}
 
-	/**
-	 * Draws a butt at the given position.
-	 * 
-         * @param x X position.
-         * @param y Y position.
-         * @param z Z position.
-         */
-	void level::draw_butt(int x, int y, int z)
-	{
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, this->butt_texture);
-		glColor3f(1, 1, 1);
-		glPushMatrix();
-		
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0); glVertex3f(x, y, z - 5);
-		glTexCoord2f(0, 1); glVertex3f(x, y + 5, z - 5);
-		glTexCoord2f(1, 1); glVertex3f(x, y + 5, z);
-		glTexCoord2f(1, 0); glVertex3f(x, y, z);
-		glEnd();
-		
-		glPopMatrix();
-		glDisable(GL_TEXTURE_2D);
-	}
+
 
 	/**
 	 * Draws the ground.
