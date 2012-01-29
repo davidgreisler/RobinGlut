@@ -6,6 +6,7 @@
  */
 
 #include "target.hpp"
+#include <iostream>
 #include <GL/gl.h>
 namespace robinglut
 {
@@ -41,7 +42,22 @@ namespace robinglut
                     glDisable(GL_TEXTURE_2D);
 
     }
-
+     
+        /*
+         * Check the collision between target and arrow
+         */
+        
+        bool target::check_collision(float arrow_x, float arrow_y, float arrow_z){
+            if(arrow_x >= this->x
+               && arrow_y >= this->y
+               && arrow_y <= this->y + this->height
+               && arrow_z >= this->z
+               && arrow_z <= this->z + this->width)
+            return true;
+            return false;
+       
+  
+        }
     target::target(const target& orig) {
     }
 

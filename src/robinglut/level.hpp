@@ -59,11 +59,18 @@ namespace robinglut
                  */
                 robinglut::heightmap* map;
 		
+                               
 		/**
 		 * The arrows fired by the player.
 		 */
 		std::vector<robinglut::arrow*> arrows;
 		
+                /*
+                 * Current Arrow
+                 */
+                
+                arrow* arrow_current;
+                
                 /**
 		 * The targets
 		 */
@@ -83,6 +90,7 @@ namespace robinglut
 		void draw_ground();
 		void draw_sky();
 		void draw_surrounding_area();
+                void check_collision();
 		
 	public:
 		level();

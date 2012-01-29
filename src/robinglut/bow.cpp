@@ -58,11 +58,11 @@ namespace robinglut
 		{
 			int current_time = glutGet(GLUT_ELAPSED_TIME);
 			int drawing_time = current_time - this->start_time;
-			force = drawing_time / 300;
+			force = drawing_time / 100;
 			
-			if (force >10.0f)
+			if (force >20.0f)
 			{
-				force = 10.0f;
+				force = 20.0f;
 			}
 		}
 		

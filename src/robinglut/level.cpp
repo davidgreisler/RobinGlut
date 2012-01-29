@@ -50,12 +50,11 @@ namespace robinglut
                
 		
                 this->draw_targets();
-                
 		this->draw_ground();
       
 		this->draw_sky();
 		this->draw_surrounding_area();
-		 this->draw_arrows();
+	        this->draw_arrows();
 
 	}
 	/* 
@@ -66,12 +65,19 @@ namespace robinglut
                 std::vector<target*>::const_iterator it;
 		for (it = this->targets.begin(); it != this->targets.end(); it++)
 		{
-			(*it)->display();
+                        if(this->arrow_current){
+
+                            if(! ((*it)->check_collision(this->arrow_current->getX(),
+                                                this->arrow_current->getY(),
+                                                this->arrow_current->getZ())))
+                            {
+                                (*it)->display();
+                            }
+                        }else (*it)->display();
 		}
         
         }
-        
-        
+
 	/**
 	 * Draws all arrows that have already been fired.
          */
@@ -112,7 +118,8 @@ namespace robinglut
 				}
 				else
 				{
-					this->arrows.push_back(new robinglut::arrow(2,9,0, this->anglex, this->angley, this->bow->get_force()));
+                                        this->arrow_current = new robinglut::arrow(2,9,0, this->anglex, this->angley, this->bow->get_force());
+					this->arrows.push_back(this->arrow_current);
 					this->bow->fire_arrow();
 				}
 				break;

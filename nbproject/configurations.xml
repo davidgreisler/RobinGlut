@@ -16,6 +16,7 @@
         <itemPath>src/robinglut/bow.hpp</itemPath>
         <itemPath>src/robinglut/game.hpp</itemPath>
         <itemPath>src/robinglut/glut_renderer.hpp</itemPath>
+        <itemPath>src/robinglut/heightmap.hpp</itemPath>
         <itemPath>src/robinglut/level.hpp</itemPath>
         <itemPath>src/robinglut/menu.hpp</itemPath>
         <itemPath>src/robinglut/raw_loader.hpp</itemPath>
@@ -39,6 +40,7 @@
         <itemPath>src/robinglut/bow.cpp</itemPath>
         <itemPath>src/robinglut/game.cpp</itemPath>
         <itemPath>src/robinglut/glut_renderer.cpp</itemPath>
+        <itemPath>src/robinglut/heightmap.cpp</itemPath>
         <itemPath>src/robinglut/level.cpp</itemPath>
         <itemPath>src/robinglut/menu.cpp</itemPath>
         <itemPath>src/robinglut/raw_loader.cpp</itemPath>
@@ -60,8 +62,6 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>src/robinglut/heightmap.cpp</itemPath>
-    <itemPath>src/robinglut/heightmap.hpp</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

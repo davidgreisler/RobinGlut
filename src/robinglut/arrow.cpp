@@ -46,7 +46,14 @@ namespace robinglut
 		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 	}
-
+        /*
+         * Getter for x,y,z
+         */
+        float  arrow::getX(){return this->x;}
+        float  arrow::getY(){return this->y;}
+        float  arrow::getZ(){return this->z;}
+        
+        
 	/**
 	 * Refreshs the current position of the arrow.
          */
@@ -62,10 +69,10 @@ namespace robinglut
 			this->x += x;
 			this->y += -9.81 / 2 * t * t + this->force * t * std::sin(this->angle_x * M_PI / 180 * -1);
 			
-                        //Die Z-Achse zum prüfen der Kollision
                         this->z = this->x * std::tan(this->angle_y*M_PI/180);
                         this->angle_arrow = std::atan((9 - this->x)*M_PI / 180);
                         
+                        std::cout << "X:" << this->x << "Y:" << this->y << "Z:" << this->z << std::endl;
                         
 			if (this->y < 0)
 			{
