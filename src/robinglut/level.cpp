@@ -53,6 +53,7 @@ namespace robinglut
 		this->draw_ground();
 		this->draw_sky();
 		this->draw_surrounding_area();
+		this->draw_arrows();
 	}
 	
 	/**
@@ -160,8 +161,6 @@ namespace robinglut
 
 		glutPostRedisplay();
 	}
-
-
 
 	/**
 	 * Draws the ground.

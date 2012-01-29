@@ -62,7 +62,7 @@ namespace robinglut
 	 * Returns the current force.
 	 * 
          * @return The current force, 0.0 if the bow is not being drawn, 
-	 *         otherwise a value between 0.0 and 8.0.
+	 *         otherwise a value between 0.0 and 20.0.
          */
 	float bow::get_force() const
 	{
