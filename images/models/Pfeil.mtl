@@ -1,0 +1,33 @@
+# Blender MTL File: 'Pfeil.blend'
+# Material Count: 3
+newmtl Feder
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640514 0.007459 0.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+
+newmtl Holz
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.307493 0.181125 0.096437
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /home/david/Projekte/HTW Berlin/RobinGlut/Temporär/pine.jpg
+
+
+newmtl Material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.202349 0.202349 0.202349
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+

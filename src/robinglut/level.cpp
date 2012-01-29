@@ -28,13 +28,13 @@ namespace robinglut
 		this->area_center_texture = loader.load_file("images/center_scope.raw", 1280, 698, false);
 		this->area_right_texture = loader.load_file("images/right_scope.raw", 1280, 698, false);
 		
-                this->targets.push_back(new robinglut::target(50,10,0,5.0,5.0, this->butt_texture));
-                this->targets.push_back(new robinglut::target(50,10,10,5.0,5.0, this->butt_texture));
-                this->targets.push_back(new robinglut::target(50,10,-10,5.0,5.0, this->butt_texture));
-                
-		this->Buttons[0] = 0;
-		this->Buttons[1] = 0;
-		this->Buttons[2] = 0;
+		this->button_pressed[0] = false;
+		this->button_pressed[1] = false;
+		this->button_pressed[2] = false;
+
+		this->targets.push_back(new robinglut::target(50,10,0,5.0,5.0, this->butt_texture));
+		this->targets.push_back(new robinglut::target(50,10,10,5.0,5.0, this->butt_texture));
+		this->targets.push_back(new robinglut::target(50,10,-10,5.0,5.0, this->butt_texture));
 	}
 	
 	/**
@@ -44,18 +44,15 @@ namespace robinglut
 	{
 		this->ui->display();
 		
-		glRotatef(this->anglex, 0, 0, 1); // Blickwinkel Rotieren
+		glRotatef(this->anglex, 0, 0, 1);
 		glRotatef(this->angley, 0, 1, 0);
-                
-               
 		
+		this->bow->display();
+
                 this->draw_targets();
 		this->draw_ground();
-      
 		this->draw_sky();
 		this->draw_surrounding_area();
-	        this->draw_arrows();
-
 	}
 	/* 
          *      Draw the targets
@@ -103,32 +100,37 @@ namespace robinglut
          */
 	void level::on_mouse(int button, int state, int x, int y)
 	{
-		//if (!mouse_listen) return;
+		int button_idx;
 		lastx = x;
 		lasty = y;
-		switch (button)
+		
+		if (GLUT_LEFT_BUTTON == button)
 		{
-			case GLUT_LEFT_BUTTON:
-				Buttons[0] = ((GLUT_DOWN == state) ? 1 : 0);
-				break;
-			case GLUT_MIDDLE_BUTTON:
-				Buttons[1] = ((GLUT_DOWN == state) ? 1 : 0);
-				break;
-			case GLUT_RIGHT_BUTTON:
-				if (state == 0)
-				{
-					this->bow->start_drawing();
-				}
-				else
-				{
-                                        this->arrow_current = new robinglut::arrow(2,9,0, this->anglex, this->angley, this->bow->get_force());
-					this->arrows.push_back(this->arrow_current);
-					this->bow->fire_arrow();
-				}
-				break;
-			default:
-				break;
+			button_idx = 0;
 		}
+		else if (GLUT_MIDDLE_BUTTON == button)
+		{
+			button_idx = 1;
+		}
+		else if (GLUT_RIGHT_BUTTON == button)
+		{
+			button_idx = 2;
+			
+			if (GLUT_DOWN == state)
+			{
+				this->bow->start_drawing();
+			}
+			else
+			{
+				arrow* fired_arrow = new arrow(2, 9, 0, 
+				                               this->anglex, this->angley, 
+				                               this->bow->get_force());
+				this->arrows.push_back(fired_arrow);
+				this->bow->fire_arrow();
+			}
+		}
+		
+		this->button_pressed[button_idx] = ((GLUT_DOWN == state) ? true : false);
 	}
 
 	/**
@@ -144,16 +146,16 @@ namespace robinglut
 		lastx = x;
 		lasty = y;
 
-		if (Buttons[0] && Buttons[1])
-		{
-			//zoom -= (float) 0.05f * diffx;
-		}
-		else if (Buttons[0])
-		{
+		// Uncomment this if you don't want it to be possible to move
+		// the camera when drawing the bow.
+		
+		//if (!this->bow->is_drawing())
+		//{
 			anglex += (float) 0.5f * diffy;
 			angley += (float) 0.5f * diffx;
-			//printf("%f %f\n", anglex, angley);
-		}
+		//}
+		
+		//zoom -= (float) 0.05f * diffx;
 
 		glutPostRedisplay();
 	}

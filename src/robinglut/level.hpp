@@ -65,6 +65,11 @@ namespace robinglut
 		 */
 		std::vector<robinglut::arrow*> arrows;
 		
+		/**
+		 * Whether the left/middle/right mouse button is pressed ATM.
+		 */
+		bool button_pressed[3];
+		
                 /*
                  * Current Arrow
                  */
@@ -82,7 +87,6 @@ namespace robinglut
 		float anglez;
 		int lastx;
 		int lasty;
-		unsigned char Buttons[3];
 		
 		
                 void draw_targets();

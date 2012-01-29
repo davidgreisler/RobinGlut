@@ -7,12 +7,23 @@
 
 namespace robinglut
 {
-	
+	/**
+	 * Creates a new .RAW loader object.
+         */
 	raw_loader::raw_loader()
 	{
 		
 	}
 	
+	/**
+	 * Loads the .RAW file under the given filename into memory and returns
+	 * the opengl texture identifier.
+	 * 
+         * @param filename The filename.
+         * @param width Width of the texture.
+         * @param height Height of the texture.
+         * @return The identifier.
+         */
 	GLuint raw_loader::load_file(const char* filename, int width, int height)
 	{
 		return raw_loader::load_file(filename, width, height, true);
@@ -34,8 +45,6 @@ namespace robinglut
 		}
 		
 		data = new char[width * height * 3];
-		
-		//file.read(data, width * height * 3);
 		
 		// .RAW files are stored upside-down.
 		

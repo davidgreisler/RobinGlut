@@ -41,11 +41,15 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/robinglut/menu.o \
 	${OBJECTDIR}/src/robinglut/level.o \
 	${OBJECTDIR}/src/robinglut/robin_glut.o \
+	${OBJECTDIR}/src/lib/glm/glm.o \
 	${OBJECTDIR}/src/robinglut/game.o \
 	${OBJECTDIR}/pfeil.o \
+	${OBJECTDIR}/src/robinglut/obj_loader.o \
 	${OBJECTDIR}/src/robinglut/raw_loader.o \
 	${OBJECTDIR}/src/robinglut/bow.o \
 	${OBJECTDIR}/src/robinglut/arrow.o \
+	${OBJECTDIR}/src/robinglut/model.o \
+	${OBJECTDIR}/src/lib/glm/gltx.o \
 	${OBJECTDIR}/src/robinglut/target.o \
 	${OBJECTDIR}/src/robinglut/heightmap.o
 
@@ -109,6 +113,11 @@ ${OBJECTDIR}/src/robinglut/robin_glut.o: src/robinglut/robin_glut.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/robin_glut.o src/robinglut/robin_glut.cpp
 
+${OBJECTDIR}/src/lib/glm/glm.o: src/lib/glm/glm.c 
+	${MKDIR} -p ${OBJECTDIR}/src/lib/glm
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/lib/glm/glm.o src/lib/glm/glm.c
+
 ${OBJECTDIR}/src/robinglut/game.o: src/robinglut/game.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
 	${RM} $@.d
@@ -118,6 +127,11 @@ ${OBJECTDIR}/pfeil.o: pfeil.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/pfeil.o pfeil.cpp
+
+${OBJECTDIR}/src/robinglut/obj_loader.o: src/robinglut/obj_loader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/obj_loader.o src/robinglut/obj_loader.cpp
 
 ${OBJECTDIR}/src/robinglut/raw_loader.o: src/robinglut/raw_loader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
@@ -133,6 +147,16 @@ ${OBJECTDIR}/src/robinglut/arrow.o: src/robinglut/arrow.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/arrow.o src/robinglut/arrow.cpp
+
+${OBJECTDIR}/src/robinglut/model.o: src/robinglut/model.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/model.o src/robinglut/model.cpp
+
+${OBJECTDIR}/src/lib/glm/gltx.o: src/lib/glm/gltx.c 
+	${MKDIR} -p ${OBJECTDIR}/src/lib/glm
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/lib/glm/gltx.o src/lib/glm/gltx.c
 
 ${OBJECTDIR}/src/robinglut/target.o: src/robinglut/target.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
