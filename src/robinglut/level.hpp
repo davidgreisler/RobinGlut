@@ -74,7 +74,7 @@ namespace robinglut
                  * Current Arrow
                  */
                 
-                arrow* arrow_current;
+                arrow* last_fired_arrow;
                 
                 /**
 		 * The targets

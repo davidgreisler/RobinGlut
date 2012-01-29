@@ -13,7 +13,7 @@ namespace robinglut
 	 * Creates a new level object.
          */
 	level::level()
-		: anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0)
+		: anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0), last_fired_arrow(0)
 	{
                 
 		this->bow = new robinglut::bow(10);
@@ -54,29 +54,30 @@ namespace robinglut
 		this->draw_sky();
 		this->draw_surrounding_area();
 	}
-	/* 
-         *      Draw the targets
-         */
-        
-        void level::draw_targets(){
-                std::vector<target*>::const_iterator it;
+	
+	/**
+	 * Draw the targets
+	 */
+	void level::draw_targets()
+	{
+		std::vector<target*>::const_iterator it;
 		for (it = this->targets.begin(); it != this->targets.end(); it++)
 		{
-                        
-                        // Check collision             
-                        if((this->arrow_current && !this->arrow_current->getHit() &&
-                            (*it)->check_collision(this->arrow_current->getX(),
-                                                   this->arrow_current->getY(),
-                                                   this->arrow_current->getZ())))
-                            {   
-                            //Getroffen 
-                            this->arrow_current->hit();
-                            this->bow->hit_one();
-                        }
-                 (*it)->display();
+			// Check collision             
+			
+			if ((this->last_fired_arrow && !this->last_fired_arrow->getHit() &&
+			    (*it)->check_collision(this->last_fired_arrow->getX(),
+						   this->last_fired_arrow->getY(),
+						   this->last_fired_arrow->getZ())))
+			{
+				//Getroffen 
+				this->last_fired_arrow->hit();
+				this->bow->hit_one();
+			}
+			(*it)->display();
 		}
-        
-        }
+
+	}
 
 	/**
 	 * Draws all arrows that have already been fired.
@@ -122,10 +123,10 @@ namespace robinglut
 			}
 			else
 			{
-				arrow* fired_arrow = new arrow(2, 9, 0, 
-				                               this->anglex, this->angley, 
-				                               this->bow->get_force());
-				this->arrows.push_back(fired_arrow);
+				last_fired_arrow = new arrow(2, 9, 0, 
+				                             this->anglex, this->angley, 
+				                             this->bow->get_force());
+				this->arrows.push_back(last_fired_arrow);
 				this->bow->fire_arrow();
 			}
 		}
