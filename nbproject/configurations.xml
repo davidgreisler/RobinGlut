@@ -11,6 +11,13 @@
         <itemPath>src/event/callback_equals.hpp</itemPath>
         <itemPath>src/event/event.hpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f3" displayName="lib" projectFiles="true">
+        <logicalFolder name="f1" displayName="glm" projectFiles="true">
+          <itemPath>src/lib/glm/glm.h</itemPath>
+          <itemPath>src/lib/glm/glm.hpp</itemPath>
+          <itemPath>src/lib/glm/gltx.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
       <logicalFolder name="f2" displayName="robinglut" projectFiles="true">
         <itemPath>src/robinglut/arrow.hpp</itemPath>
         <itemPath>src/robinglut/bow.hpp</itemPath>
@@ -18,6 +25,8 @@
         <itemPath>src/robinglut/glut_renderer.hpp</itemPath>
         <itemPath>src/robinglut/level.hpp</itemPath>
         <itemPath>src/robinglut/menu.hpp</itemPath>
+        <itemPath>src/robinglut/model.hpp</itemPath>
+        <itemPath>src/robinglut/obj_loader.hpp</itemPath>
         <itemPath>src/robinglut/raw_loader.hpp</itemPath>
         <itemPath>src/robinglut/robin_glut.hpp</itemPath>
         <itemPath>src/robinglut/scene.hpp</itemPath>
@@ -33,6 +42,12 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="f2" displayName="lib" projectFiles="true">
+        <logicalFolder name="f1" displayName="glm" projectFiles="true">
+          <itemPath>src/lib/glm/glm.c</itemPath>
+          <itemPath>src/lib/glm/gltx.c</itemPath>
+        </logicalFolder>
+      </logicalFolder>
       <logicalFolder name="f1" displayName="robinglut" projectFiles="true">
         <itemPath>src/robinglut/arrow.cpp</itemPath>
         <itemPath>src/robinglut/bow.cpp</itemPath>
@@ -40,6 +55,8 @@
         <itemPath>src/robinglut/glut_renderer.cpp</itemPath>
         <itemPath>src/robinglut/level.cpp</itemPath>
         <itemPath>src/robinglut/menu.cpp</itemPath>
+        <itemPath>src/robinglut/model.cpp</itemPath>
+        <itemPath>src/robinglut/obj_loader.cpp</itemPath>
         <itemPath>src/robinglut/raw_loader.cpp</itemPath>
         <itemPath>src/robinglut/robin_glut.cpp</itemPath>
         <itemPath>src/robinglut/scene.cpp</itemPath>

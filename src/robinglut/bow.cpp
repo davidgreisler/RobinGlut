@@ -1,6 +1,7 @@
 #include <GL/glut.h>
 
 #include "bow.hpp"
+#include "obj_loader.hpp"
 
 namespace robinglut
 {
@@ -12,7 +13,9 @@ namespace robinglut
 	bow::bow(int arrow_count)
 		: arrow_count(arrow_count), start_time(0)
 	{
-		
+		obj_loader loader;
+		this->arrow_model = loader.load_file("images/models/Pfeil.obj");
+		this->arrow_model->scale(3);
 	}
 	
 	/**
@@ -33,6 +36,16 @@ namespace robinglut
 		{
 			this->start_time = glutGet(GLUT_ELAPSED_TIME);
 		}
+	}
+	
+	/**
+	 * Returns whether the bow is being drawn at the moment or not.
+	 * 
+	 * @return When it is drawn true, otherwise false.
+         */
+	bool bow::is_drawing() const
+	{
+		return (this->start_time == 0) ? false : true;
 	}
 	
 	/**
@@ -84,6 +97,11 @@ namespace robinglut
          */
 	void bow::display()
 	{
-		
+		/*glPushMatrix();
+		//glLoadIdentity();
+		glTranslatef(4, 9, 0);
+		glRotatef(180.0f, 0, 1, 0);
+		this->arrow_model->display();
+		glPopMatrix();*/
 	}
 }

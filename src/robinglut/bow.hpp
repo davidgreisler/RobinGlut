@@ -1,6 +1,8 @@
 #ifndef BOW_HPP
 #define	BOW_HPP
 
+#include "model.hpp"
+
 namespace robinglut
 {
 	/**
@@ -18,11 +20,17 @@ namespace robinglut
 		 * When the drawing started.
                  */
 		int start_time;
+		
+		/**
+		 * Arrow model.
+		 */
+		model* arrow_model;
 	public:
 		bow(int arrow_count);
 		~bow();
 		
 		void start_drawing();
+		bool is_drawing() const;
 		void fire_arrow();
 		
 		float get_force() const;
