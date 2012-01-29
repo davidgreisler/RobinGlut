@@ -1,6 +1,10 @@
 #ifndef ARROW_HPP
 #define	ARROW_HPP
 
+#include <vector>
+
+#include "target.hpp"
+
 namespace robinglut
 {
 
@@ -34,11 +38,6 @@ namespace robinglut
 		 * Y angle.
 		 */
 		float angle_y;
-		
-                /*
-                 * angle arrow 
-                 */
-                float angle_arrow;
                 
 		/**
 		 * Time when the arrow was fired.
@@ -49,23 +48,35 @@ namespace robinglut
 		 * The force/speed with which this arrow was fired.
 		 */
 		float force;
-                
-                /*
-                 * Der Pfeil hat getroffen
+		
+                /**
+                 * Angle arrow 
                  */
+                float angle_arrow;
                 
-                bool hitted;
+		/**
+		 * Whether the arrow is still in the air.
+		 */
+                bool flying_atm;
+		
+		/**
+		 * Targets to check for collision.
+                 */
+		std::vector<robinglut::target*>& targets;
+		
+		target* do_collision_detection(float delta_x, float delta_y);
 		
 	public:
-		arrow(float x, float y, float z, float angle_x, float angle_y, float force);
+		arrow(float x, float y, float z, float angle_x, float angle_y, 
+		      float force, std::vector<robinglut::target*>& targets);
 		
 		void refresh_position();
-                float getX();
-                float getY();
-                float getZ();
+                float get_x();
+                float get_y();
+                float get_z();
 		void display();
                 void hit();
-                bool getHit();
+                bool is_flying();
 	};
 }
 

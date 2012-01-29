@@ -13,7 +13,7 @@ namespace robinglut
 	 * Creates a new level object.
          */
 	level::level()
-		: anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0), last_fired_arrow(0)
+		: last_fired_arrow(0), anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0)
 	{
                 
 		this->bow = new robinglut::bow(10);
@@ -35,6 +35,17 @@ namespace robinglut
 		this->targets.push_back(new robinglut::target(50,10,0,5.0,5.0, this->butt_texture));
 		this->targets.push_back(new robinglut::target(50,10,10,5.0,5.0, this->butt_texture));
 		this->targets.push_back(new robinglut::target(50,10,-10,5.0,5.0, this->butt_texture));
+		
+		std::vector<target*>::const_iterator it;
+		for (it = this->targets.begin(); it != this->targets.end(); it++)
+		{
+			(*it)->got_scored += event::event_listener(this, &level::increase_score);
+		}
+	}
+	
+	void level::increase_score(int)
+	{
+		this->bow->increase_score();
 	}
 	
 	/**
@@ -57,27 +68,15 @@ namespace robinglut
 	}
 	
 	/**
-	 * Draw the targets
+	 * Draws the targets
 	 */
 	void level::draw_targets()
 	{
 		std::vector<target*>::const_iterator it;
 		for (it = this->targets.begin(); it != this->targets.end(); it++)
 		{
-			// Check collision             
-			
-			if ((this->last_fired_arrow && !this->last_fired_arrow->getHit() &&
-			    (*it)->check_collision(this->last_fired_arrow->getX(),
-						   this->last_fired_arrow->getY(),
-						   this->last_fired_arrow->getZ())))
-			{
-				//Getroffen 
-				this->last_fired_arrow->hit();
-				this->bow->hit_one();
-			}
 			(*it)->display();
 		}
-
 	}
 
 	/**
@@ -126,7 +125,8 @@ namespace robinglut
 			{
 				last_fired_arrow = new arrow(2, 9, 0, 
 				                             this->anglex, this->angley, 
-				                             this->bow->get_force());
+				                             this->bow->get_force(),
+				                             this->targets);
 				this->arrows.push_back(last_fired_arrow);
 				this->bow->fire_arrow();
 			}

@@ -15,7 +15,6 @@ namespace robinglut
 		 * How many arrows are left in the quiver.
 		 */
 		int arrow_count;
-                int score;
 		
 		/**
 		 * When the drawing started.
@@ -26,6 +25,11 @@ namespace robinglut
 		 * Arrow model.
 		 */
 		model* arrow_model;
+		
+		/**
+		 * The current score.
+		 */
+		int score;
 	public:
 		bow(int arrow_count);
 		~bow();
@@ -37,7 +41,7 @@ namespace robinglut
 		float get_force() const;
 		int get_arrow_count() const;
                 int get_score() const;
-                void hit_one();
+                void increase_score();
 		
 		void display();
 	};

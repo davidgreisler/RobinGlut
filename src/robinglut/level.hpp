@@ -95,6 +95,7 @@ namespace robinglut
 		void draw_sky();
 		void draw_surrounding_area();
                 void check_collision();
+		void increase_score(int);
 		
 	public:
 		level();

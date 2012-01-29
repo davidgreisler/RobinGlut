@@ -93,7 +93,6 @@ namespace robinglut
 		return this->arrow_count;
 	}
 	
-        
         /**
 	 * Returns the score
 	 * 
@@ -105,17 +104,14 @@ namespace robinglut
             
         }
         
-        
         /**
-	 * Player has hit a target
-	 * 
+	 * The player has hit a target, increase the score by one.
          */
-        void bow::hit_one()
+        void bow::increase_score()
         {
               this->score++;
             
         }
-        
         
 	/**
 	 * Displays the bow.

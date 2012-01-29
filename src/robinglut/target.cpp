@@ -10,61 +10,124 @@
 #include <GL/gl.h>
 namespace robinglut
 {
-    /**
-	 * Draws a butt at the given position.
+
+	/**
+	 * Creates a new target object.
 	 * 
-         * @param x X position.
-         * @param y Y position.
-         * @param z Z position.
-         * @param width Targets width
-         * @param height Targets height
-         * @param texture Targets texture    
+	 * @param x X position.
+	 * @param y Y position.
+	 * @param z Z position.
+	 * @param width Targets width
+	 * @param height Targets height
+	 * @param texture Targets texture    
+	 */
+	target::target(float x, float y, float z, float width, float height, GLuint texture)
+		: width(width), height(height), x(x), y(y), z(z), texture(texture)
+	{
+		
+	}
+	
+	/**
+	 * Copy constructor.
+	 * 
+         * @param orig The object to copy.
          */
-    target::target(float x, float y,float z, int width, int height,  GLuint texture) : 
-    width(width), height(height), x(x),y(y), z(z), texture(texture), hit(false) {
-    }
+	target::target(const target& orig)
+		: width(orig.width), height(orig.height), x(orig.x), y(orig.y)
+		, z(orig.z), texture(orig.texture)
+	{
+		
+	}
 
-
-    void target::display(){
-       
-            glEnable(GL_TEXTURE_2D);
-                    glBindTexture(GL_TEXTURE_2D, this->texture);
-                    glColor3f(1, 1, 1);
-                    glPushMatrix();
-
-                    glBegin(GL_QUADS);
-                    glTexCoord2f(0, 0); glVertex3f(this->x, y, z);
-                    glTexCoord2f(0, 1); glVertex3f(this->x, this->y + this->height, z);
-                    glTexCoord2f(1, 1); glVertex3f(this->x, this->y + this->height, this->z + this->width);
-                    glTexCoord2f(1, 0); glVertex3f(this->x, y, this->z + this->width);
-                    glEnd();
-
-                    glPopMatrix();
-                    glDisable(GL_TEXTURE_2D);
-
-    }
-     
-        /*
-         * Check the collision between target and arrow
+	/**
+	 * Frees all used resources.
          */
-        
-        bool target::check_collision(float arrow_x, float arrow_y, float arrow_z){
-            if(arrow_x >= this->x
-               && arrow_y >= this->y
-               && arrow_y <= this->y + this->height
-               && arrow_z >= this->z
-               && arrow_z <= this->z + this->width){
-            // Das Ziel wurde getroffen
-            this->hit = true;
-            return true;}
-            return false;
-       
-  
-        }
-    target::target(const target& orig) {
-    }
+	target::~target()
+	{
+	}
+	
+	/**
+	 * Returns the position of the target on the x axis.
+	 * 
+         * @return The position on the x axis.
+         */
+	float target::get_x() const
+	{
+		return this->x;
+	}
+	
+	/**
+	 * Returns the position of the target on the y axis.
+	 * 
+         * @return The position on the y axis.
+         */
+	float target::get_y() const
+	{
+		return this->y;
+	}
+	
+	/**
+	 * Returns the position of the target on the z axis.
+	 * 
+         * @return The position on the z axis.
+         */
+	float target::get_z() const
+	{
+		return this->z;
+	}
+	
+	/**
+	 * Returns the width of the target.
+	 * 
+         * @return The width of the target.
+         */
+	float target::get_width() const
+	{
+		return this->width;
+	}
+	
+	/**
+	 * Returns the height of the target.
+	 * 
+         * @return The height of the target.
+         */
+	float target::get_height() const
+	{
+		return this->height;
+	}
+	
+	/**
+	 * Scores the target (tells it that it was hit by an arrow).
+	 * 
+	 * Emits the got_scored event.
+         */
+	void target::score()
+	{
+		this->got_scored(123);
+	}
 
-    target::~target() {
-    }
+	/**
+	 * Displays the target.
+         */
+	void target::display()
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, this->texture);
+		glColor3f(1, 1, 1);
+		glPushMatrix();
 
+		glBegin(GL_QUADS);
+		glTexCoord2f(0, 0);
+		glVertex3f(this->x, y, z);
+		glTexCoord2f(0, 1);
+		glVertex3f(this->x, this->y + this->height, z);
+		glTexCoord2f(1, 1);
+		glVertex3f(this->x, this->y + this->height, this->z + this->width);
+		glTexCoord2f(1, 0);
+		glVertex3f(this->x, y, this->z + this->width);
+		glEnd();
+
+		glPopMatrix();
+		glDisable(GL_TEXTURE_2D);
+	}
 }
