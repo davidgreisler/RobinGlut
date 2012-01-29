@@ -103,7 +103,7 @@ namespace robinglut
          */
 	void target::score()
 	{
-		this->got_scored(123);
+		this->got_scored(this);
 	}
 
 	/**

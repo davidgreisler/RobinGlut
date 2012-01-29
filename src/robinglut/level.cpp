@@ -43,9 +43,20 @@ namespace robinglut
 		}
 	}
 	
-	void level::increase_score(int)
+	/**
+	 * Increases the score by one and removes the target that got hit.
+	 * 
+         * @param hit_target The target that got hit.
+         */
+	void level::increase_score(target* hit_target)
 	{
 		this->bow->increase_score();
+		
+		// Remove the target.
+		
+		std::vector<target*>::iterator search;
+		search = std::find(this->targets.begin(), this->targets.end(), hit_target);
+		this->targets.erase(search);
 	}
 	
 	/**

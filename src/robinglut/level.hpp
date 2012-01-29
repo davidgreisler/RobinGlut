@@ -81,7 +81,6 @@ namespace robinglut
 		 */
 		std::vector<robinglut::target*> targets;
                 
-                
 		float anglex;
 		float angley;
 		float anglez;
@@ -95,7 +94,7 @@ namespace robinglut
 		void draw_sky();
 		void draw_surrounding_area();
                 void check_collision();
-		void increase_score(int);
+		void increase_score(target* hit_target);
 		
 		void start_drawing();
 		void fire_arrow();

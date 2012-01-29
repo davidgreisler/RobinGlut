@@ -52,9 +52,9 @@ namespace robinglut
 		/**
 		 * This event is emitted when the target is scored by an arrow.
 		 * 
-		 * Ignore the integer.
+		 * The first argument is this target.
                  */
-		event::event<int> got_scored;
+		event::event<target*> got_scored;
 		
 		float get_x() const;
 		float get_y() const;
