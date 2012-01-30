@@ -48,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/robinglut/game.o \
 	${OBJECTDIR}/pfeil.o \
 	${OBJECTDIR}/src/robinglut/obj_loader.o \
+	${OBJECTDIR}/src/robinglut/levels/level3.o \
 	${OBJECTDIR}/src/robinglut/raw_loader.o \
 	${OBJECTDIR}/src/robinglut/arrow.o \
 	${OBJECTDIR}/src/robinglut/target.o \
@@ -149,6 +150,11 @@ ${OBJECTDIR}/src/robinglut/obj_loader.o: src/robinglut/obj_loader.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/obj_loader.o src/robinglut/obj_loader.cpp
+
+${OBJECTDIR}/src/robinglut/levels/level3.o: src/robinglut/levels/level3.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut/levels
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/levels/level3.o src/robinglut/levels/level3.cpp
 
 ${OBJECTDIR}/src/robinglut/raw_loader.o: src/robinglut/raw_loader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut

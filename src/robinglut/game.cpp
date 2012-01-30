@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include "levels/level1.hpp"
 #include "levels/level2.hpp"
+#include "levels/level3.hpp"
 
 namespace robinglut
 {
@@ -39,7 +40,9 @@ namespace robinglut
 		{
 			case 1: this->start_level(new level_2(this->player));
 			        break;
-			case 2: this->game_over_event(this->player->get_score());
+			case 2: this->start_level(new level_3(this->player));
+			        break;
+			case 3: this->game_over_event(this->player->get_score());
 			        break;
 		}
 	}
