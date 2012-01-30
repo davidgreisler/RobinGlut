@@ -153,7 +153,7 @@ namespace robinglut
 			
 			// Arrow hits on the Y axis.
 			
-			if (this->get_z() <= current_target->get_z())
+			if (this->get_z() < current_target->get_z())
 			{
 				// Arrow flies past on the left side.
 				
@@ -161,7 +161,7 @@ namespace robinglut
 			}
 			
 			temp = current_target->get_z() + current_target->get_width();
-			if (this->get_z() >= temp)
+			if (this->get_z() > temp)
 			{
 				// Arrow flies past on the right side.
 				
