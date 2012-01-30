@@ -14,7 +14,7 @@ namespace robinglut
 		char* fptr = (char*)filename;
 		GLMmodel* glm_model = glmReadOBJ(fptr);
 	
-		glmUnitize(glm_model);
+		//glmUnitize(glm_model);
 		glmFacetNormals(glm_model);
 		glmVertexNormals(glm_model, 90.0);
 		
