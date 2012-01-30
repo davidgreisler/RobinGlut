@@ -3,7 +3,7 @@
 
 #include <GL/gl.h>
 
-#include "bow.hpp"
+#include "player.hpp"
 
 namespace robinglut
 {
@@ -22,10 +22,10 @@ namespace robinglut
 		GLuint background_image;
 		
 		/**
-		 * Reference to the player's bow, used to retrieve force/speed
+		 * Reference to the player, used to retrieve force/speed
 		 * and remaining arrows.
 		 */
-		robinglut::bow& bow;
+		robinglut::player& player;
 		
 		void print_text(float x, float y, float z, const char* text, float r, float g, float b, float a);
                 void draw_crosshair();
@@ -33,7 +33,7 @@ namespace robinglut
 		void draw_background();
 		void draw_counts();
 	public:
-		user_interface(robinglut::bow& bow);
+		user_interface(robinglut::player& player);
 		
 		void display();
 	};

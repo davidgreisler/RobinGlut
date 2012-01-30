@@ -11,13 +11,15 @@ namespace robinglut
 
 	/**
 	 * Creates a new level object.
+	 * 
+	 * @param game_player The player.
          */
-	level::level()
-		: last_fired_arrow(0), anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0)
+	level::level(robinglut::player* game_player)
+		: player(game_player), last_fired_arrow(0), anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0)
 	{
                 
-		this->bow = new robinglut::bow(10);
-		this->ui = new user_interface(*(this->bow));
+		this->player = new robinglut::player(10);
+		this->ui = new user_interface(*(this->player));
 
                 //this->map = new robinglut::heightmap("images/tesseract.raw", 120, 120);
                 
@@ -31,11 +33,14 @@ namespace robinglut
 		this->button_pressed[0] = false;
 		this->button_pressed[1] = false;
 		this->button_pressed[2] = false;
-
-		this->targets.push_back(new robinglut::target(50,10,0,5.0,5.0, this->butt_texture));
-		this->targets.push_back(new robinglut::target(50,10,10,5.0,5.0, this->butt_texture));
-		this->targets.push_back(new robinglut::target(50,10,-10,5.0,5.0, this->butt_texture));
-		
+	}
+	
+	/**
+	 * Initializes the level. Do not forget to call this. Call this 
+	 * immediately after constructing the level (adding targets, etc.).
+         */
+	void level::initialize()
+	{
 		std::vector<target*>::const_iterator it;
 		for (it = this->targets.begin(); it != this->targets.end(); it++)
 		{
@@ -50,13 +55,18 @@ namespace robinglut
          */
 	void level::increase_score(target* hit_target)
 	{
-		this->bow->increase_score();
+		this->player->increase_score();
 		
 		// Remove the target.
 		
 		std::vector<target*>::iterator search;
 		search = std::find(this->targets.begin(), this->targets.end(), hit_target);
 		this->targets.erase(search);
+		
+		if (this->targets.empty())
+		{
+			this->finished_event(123);
+		}
 	}
 	
 	/**
@@ -69,7 +79,7 @@ namespace robinglut
 		glRotatef(this->anglex, 0, 0, 1);
 		glRotatef(this->angley, 0, 1, 0);
 		
-		this->bow->display();
+		this->player->display();
 
                 this->draw_targets();
 		this->draw_ground();
@@ -147,9 +157,9 @@ namespace robinglut
          */
 	void level::start_drawing()
 	{
-		if (this->bow->get_arrow_count() > 0)
+		if (this->player->get_arrow_count() > 0)
 		{
-			this->bow->start_drawing();
+			this->player->start_drawing();
 		}
 	}
 
@@ -158,14 +168,14 @@ namespace robinglut
          */
 	void level::fire_arrow()
 	{
-		if (this->bow->is_drawing())
+		if (this->player->is_drawing())
 		{
 			last_fired_arrow = new arrow(2, 9, 0,
 						this->anglex, this->angley,
-						this->bow->get_force(),
+						this->player->get_force(),
 						this->targets);
 			this->arrows.push_back(last_fired_arrow);
-			this->bow->fire_arrow();
+			this->player->fire_arrow();
 		}
 	}
 

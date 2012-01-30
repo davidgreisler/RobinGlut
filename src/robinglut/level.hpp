@@ -6,7 +6,7 @@
 #include "scene.hpp"
 #include "arrow.hpp"
 #include "target.hpp"
-#include "bow.hpp"
+#include "player.hpp"
 #include "heightmap.hpp"
 #include "user_interface.hpp"
 #include "../event/event.hpp"
@@ -21,9 +21,9 @@ namespace robinglut
 	{
 	private:
 		/**
-		 * The texture for the butt.
+		 * The game player
 		 */
-		GLuint butt_texture;
+		robinglut::player* player;
 		
 		/**
 		 * The texture used for the ground.
@@ -50,15 +50,10 @@ namespace robinglut
 		 */
 		user_interface* ui;
 		
-		/**
-		 * The bow used to fire arrows.
-		 */
-		robinglut::bow* bow;
-                /*
+                /**
                  * Heightmap terrain
                  */
                 robinglut::heightmap* map;
-		
                                
 		/**
 		 * The arrows fired by the player.
@@ -70,23 +65,16 @@ namespace robinglut
 		 */
 		bool button_pressed[3];
 		
-                /*
-                 * Current Arrow
-                 */
-                
-                arrow* last_fired_arrow;
-                
                 /**
-		 * The targets
-		 */
-		std::vector<robinglut::target*> targets;
+		 * The last arrow that got fired.
+                 */
+                arrow* last_fired_arrow;
                 
 		float anglex;
 		float angley;
 		float anglez;
 		int lastx;
 		int lasty;
-		
 		
                 void draw_targets();
 		void draw_arrows();
@@ -99,8 +87,21 @@ namespace robinglut
 		void start_drawing();
 		void fire_arrow();
 		
+	protected:
+		/**
+		 * The texture for the butt.
+		 */
+		GLuint butt_texture;
+		
+		/**
+		 * The targets
+		 */
+		std::vector<robinglut::target*> targets;
+		
+		void initialize();
+		
 	public:
-		level();
+		level(robinglut::player* game_player);
 		
 		/**
 		 * Event that is emitted when the level was finished.

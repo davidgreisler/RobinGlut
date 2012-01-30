@@ -34,19 +34,21 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/src/robinglut/levels/level2.o \
 	${OBJECTDIR}/src/robinglut/user_interface.o \
 	${OBJECTDIR}/src/main.o \
+	${OBJECTDIR}/src/robinglut/player.o \
 	${OBJECTDIR}/src/robinglut/scene.o \
 	${OBJECTDIR}/src/robinglut/glut_renderer.o \
 	${OBJECTDIR}/src/robinglut/menu.o \
 	${OBJECTDIR}/src/robinglut/level.o \
 	${OBJECTDIR}/src/robinglut/robin_glut.o \
 	${OBJECTDIR}/src/lib/glm/glm.o \
+	${OBJECTDIR}/src/robinglut/levels/level1.o \
 	${OBJECTDIR}/src/robinglut/game.o \
 	${OBJECTDIR}/pfeil.o \
 	${OBJECTDIR}/src/robinglut/obj_loader.o \
 	${OBJECTDIR}/src/robinglut/raw_loader.o \
-	${OBJECTDIR}/src/robinglut/bow.o \
 	${OBJECTDIR}/src/robinglut/arrow.o \
 	${OBJECTDIR}/src/robinglut/target.o \
 	${OBJECTDIR}/src/robinglut/model.o \
@@ -78,6 +80,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/robinglut: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/robinglut ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
+${OBJECTDIR}/src/robinglut/levels/level2.o: src/robinglut/levels/level2.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut/levels
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/levels/level2.o src/robinglut/levels/level2.cpp
+
 ${OBJECTDIR}/src/robinglut/user_interface.o: src/robinglut/user_interface.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
 	${RM} $@.d
@@ -87,6 +94,11 @@ ${OBJECTDIR}/src/main.o: src/main.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/main.o src/main.cpp
+
+${OBJECTDIR}/src/robinglut/player.o: src/robinglut/player.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/player.o src/robinglut/player.cpp
 
 ${OBJECTDIR}/src/robinglut/scene.o: src/robinglut/scene.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
@@ -118,6 +130,11 @@ ${OBJECTDIR}/src/lib/glm/glm.o: src/lib/glm/glm.c
 	${RM} $@.d
 	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/lib/glm/glm.o src/lib/glm/glm.c
 
+${OBJECTDIR}/src/robinglut/levels/level1.o: src/robinglut/levels/level1.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/robinglut/levels
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/levels/level1.o src/robinglut/levels/level1.cpp
+
 ${OBJECTDIR}/src/robinglut/game.o: src/robinglut/game.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
 	${RM} $@.d
@@ -137,11 +154,6 @@ ${OBJECTDIR}/src/robinglut/raw_loader.o: src/robinglut/raw_loader.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/raw_loader.o src/robinglut/raw_loader.cpp
-
-${OBJECTDIR}/src/robinglut/bow.o: src/robinglut/bow.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src/robinglut
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/robinglut/bow.o src/robinglut/bow.cpp
 
 ${OBJECTDIR}/src/robinglut/arrow.o: src/robinglut/arrow.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/robinglut

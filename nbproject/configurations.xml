@@ -19,8 +19,11 @@
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f2" displayName="robinglut" projectFiles="true">
+        <logicalFolder name="f1" displayName="levels" projectFiles="true">
+          <itemPath>src/robinglut/levels/level1.hpp</itemPath>
+          <itemPath>src/robinglut/levels/level2.hpp</itemPath>
+        </logicalFolder>
         <itemPath>src/robinglut/arrow.hpp</itemPath>
-        <itemPath>src/robinglut/bow.hpp</itemPath>
         <itemPath>src/robinglut/game.hpp</itemPath>
         <itemPath>src/robinglut/glut_renderer.hpp</itemPath>
         <itemPath>src/robinglut/heightmap.hpp</itemPath>
@@ -28,6 +31,7 @@
         <itemPath>src/robinglut/menu.hpp</itemPath>
         <itemPath>src/robinglut/model.hpp</itemPath>
         <itemPath>src/robinglut/obj_loader.hpp</itemPath>
+        <itemPath>src/robinglut/player.hpp</itemPath>
         <itemPath>src/robinglut/raw_loader.hpp</itemPath>
         <itemPath>src/robinglut/robin_glut.hpp</itemPath>
         <itemPath>src/robinglut/scene.hpp</itemPath>
@@ -51,8 +55,11 @@
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f1" displayName="robinglut" projectFiles="true">
+        <logicalFolder name="f1" displayName="levels" projectFiles="true">
+          <itemPath>src/robinglut/levels/level1.cpp</itemPath>
+          <itemPath>src/robinglut/levels/level2.cpp</itemPath>
+        </logicalFolder>
         <itemPath>src/robinglut/arrow.cpp</itemPath>
-        <itemPath>src/robinglut/bow.cpp</itemPath>
         <itemPath>src/robinglut/game.cpp</itemPath>
         <itemPath>src/robinglut/glut_renderer.cpp</itemPath>
         <itemPath>src/robinglut/heightmap.cpp</itemPath>
@@ -60,6 +67,7 @@
         <itemPath>src/robinglut/menu.cpp</itemPath>
         <itemPath>src/robinglut/model.cpp</itemPath>
         <itemPath>src/robinglut/obj_loader.cpp</itemPath>
+        <itemPath>src/robinglut/player.cpp</itemPath>
         <itemPath>src/robinglut/raw_loader.cpp</itemPath>
         <itemPath>src/robinglut/robin_glut.cpp</itemPath>
         <itemPath>src/robinglut/scene.cpp</itemPath>

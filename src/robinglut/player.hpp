@@ -2,14 +2,19 @@
 #define	BOW_HPP
 
 #include "model.hpp"
+#include "game.hpp"
 
 namespace robinglut
 {
 	/**
 	 * The bow, provides methods for drawing the bow/firing an arrow.
 	 */
-	class bow
+	class player
 	{
+		/**
+		 * For changing the level counter.
+		 */
+		friend class game;
 	private:
 		/**
 		 * How many arrows are left in the quiver.
@@ -17,7 +22,7 @@ namespace robinglut
 		int arrow_count;
 		
 		/**
-		 * When the drawing started.
+		 * When the drawing of the bow started.
                  */
 		int start_time;
 		
@@ -30,9 +35,18 @@ namespace robinglut
 		 * The current score.
 		 */
 		int score;
+		
+		/**
+		 * The current level.
+                 */
+		int current_level;
+		
+	protected:
+		void set_current_level(int level);
+		
 	public:
-		bow(int arrow_count);
-		~bow();
+		player(int arrow_count);
+		~player();
 		
 		void start_drawing();
 		bool is_drawing() const;
@@ -41,7 +55,9 @@ namespace robinglut
 		float get_force() const;
 		int get_arrow_count() const;
                 int get_score() const;
+		void add_arrows(int how_many);
                 void increase_score();
+		int get_current_level() const;
 		
 		void display();
 	};

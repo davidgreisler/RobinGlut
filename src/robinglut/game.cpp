@@ -1,5 +1,8 @@
 #include "game.hpp"
 #include "level.hpp"
+#include "player.hpp"
+#include "levels/level1.hpp"
+#include "levels/level2.hpp"
 
 namespace robinglut
 {
@@ -9,7 +12,7 @@ namespace robinglut
          * @param renderer Renderer to use.
          */
 	game::game(glut_renderer& renderer)
-		: renderer(renderer)
+		: renderer(renderer), current_level_index(0), current_level(0)
 	{
 		
 	}
@@ -23,13 +26,35 @@ namespace robinglut
 	}
 	
 	/**
-	 * Is called when a level is finished (loads next level).
+	 * Starts the next level.
 	 * 
          * @param int ignored.
          */
-	void game::finished_level(int)
+	void game::next_level(int)
 	{
-		this->game_over_event(123);
+		switch (this->current_level_index)
+		{
+			case 1: this->start_level(new level_2(this->player));
+			        break;
+			case 2: this->game_over_event(this->player->get_score());
+			        break;
+		}
+	}
+	
+	/**
+	 * Starts the given level. Deletes/frees the old one.
+	 * 
+         * @param level The level to start.
+         */
+	template<class L>
+	void game::start_level(L* level)
+	{
+		this->current_level_index++;
+		this->player->set_current_level(this->current_level_index);
+		
+		this->current_level = level;
+		this->renderer.set_current_scene(this->current_level);
+		this->current_level->finished_event += event::event_listener(this, &game::next_level);
 	}
 	
 	/**
@@ -37,9 +62,10 @@ namespace robinglut
          */
 	void game::start()
 	{
-		level* level1 = new level;
-		this->renderer.set_current_scene(level1);
-		level1->finished_event += event::event_listener(this, &game::finished_level);
+		this->player = new robinglut::player(10);
+		
+		this->current_level_index = 0;
+		this->start_level(new level_1(this->player));
 	}
 	
 }

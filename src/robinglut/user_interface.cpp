@@ -15,8 +15,8 @@ namespace robinglut
 	 * 
          * @param bow Bow to use as data source.
          */
-	user_interface::user_interface(robinglut::bow& bow)
-		: bow(bow)
+	user_interface::user_interface(robinglut::player& player)
+		: player(player)
 	{
 		raw_loader loader;
 		this->background_image = loader.load_file("images/top.raw", 1080, 85, false);
@@ -76,8 +76,8 @@ namespace robinglut
 		glColor3f(1, 0, 0);
 
 		glVertex3f(2, 10, -1.3);
-		glVertex3f(2, 10.1 + this->bow.get_force() / 15, -1.3);
-		glVertex3f(2, 10.1 + this->bow.get_force() / 15, -1.2);
+		glVertex3f(2, 10.1 + this->player.get_force() / 15, -1.3);
+		glVertex3f(2, 10.1 + this->player.get_force() / 15, -1.2);
 		glVertex3f(2, 10, -1.2);
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
@@ -120,19 +120,19 @@ namespace robinglut
 		
 		// Level
 		
-		ss << "1";
+		ss <<this->player.get_current_level();
 		this->print_text(1.5, 10.92, -0.65, ss.str().c_str(), 0, 0, 0, 0.8);
 		ss.str("");
 		
 		// Points
 		
-		ss << this->bow.get_score();
+		ss << this->player.get_score();
 		this->print_text(1.5, 10.92, -0.14, ss.str().c_str(), 0, 0, 0, 0.8);
 		ss.str("");
 
 		// Arrows left.
 		
-		ss << this->bow.get_arrow_count();
+		ss << this->player.get_arrow_count();
 		this->print_text(1.5, 10.92, 0.345, ss.str().c_str(), 0, 0, 0, 0.8);
 		ss.str("");
 	}
