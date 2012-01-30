@@ -21,11 +21,6 @@ namespace robinglut
 	{
 	private:
 		/**
-		 * The game player
-		 */
-		robinglut::player* player;
-		
-		/**
 		 * The texture used for the ground.
 		 */
 		GLuint ground_texture;
@@ -88,6 +83,11 @@ namespace robinglut
 		void fire_arrow();
 		
 	protected:
+		/**
+		 * The game player
+		 */
+		robinglut::player* player;
+		
 		/**
 		 * The texture for the butt.
 		 */

@@ -11,6 +11,8 @@ namespace robinglut
 		this->targets.push_back(new robinglut::target(50,10,-20,5.0,5.0, this->butt_texture));
 		this->targets.push_back(new robinglut::target(50,10,20,5.0,5.0, this->butt_texture));
 		
+		this->player->add_arrows(5);
+		
 		this->initialize();
 	}
 }

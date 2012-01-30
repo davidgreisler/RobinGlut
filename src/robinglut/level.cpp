@@ -15,10 +15,8 @@ namespace robinglut
 	 * @param game_player The player.
          */
 	level::level(robinglut::player* game_player)
-		: player(game_player), last_fired_arrow(0), anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0)
+		: last_fired_arrow(0), anglex(0.0f), angley(0.0f), anglez(0.0f), lastx(0), lasty(0), player(game_player)
 	{
-                
-		this->player = new robinglut::player(10);
 		this->ui = new user_interface(*(this->player));
 
                 //this->map = new robinglut::heightmap("images/tesseract.raw", 120, 120);

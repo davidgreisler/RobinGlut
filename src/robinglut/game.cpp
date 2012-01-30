@@ -32,6 +32,9 @@ namespace robinglut
          */
 	void game::next_level(int)
 	{
+		// @todo The old level is not freed here. Do this in a level 
+		// loader?!
+		
 		switch (this->current_level_index)
 		{
 			case 1: this->start_level(new level_2(this->player));
@@ -42,7 +45,7 @@ namespace robinglut
 	}
 	
 	/**
-	 * Starts the given level. Deletes/frees the old one.
+	 * Starts the given level.
 	 * 
          * @param level The level to start.
          */
