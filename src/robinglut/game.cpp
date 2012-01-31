@@ -35,6 +35,7 @@ namespace robinglut
 	{
 		// @todo The old level is not freed here. Do this in a level 
 		// loader?!
+                // Man sollte besser die levels in Liste speichern als in Dateien..
 		
 		switch (this->current_level_index)
 		{
