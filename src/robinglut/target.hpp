@@ -42,6 +42,11 @@ namespace robinglut
 		 * The texture of the butt.
 		 */
 		GLuint texture;
+                 
+                /* 
+                 * Is the target hitted?
+                 */
+                bool hitted;
 		
 	public:
 		target(float x, float y, float z, float width, float height, 
@@ -64,8 +69,10 @@ namespace robinglut
 		float get_height() const;
 		
 		void score();
-		
 		void display();
+                
+                bool get_hitted();
+                void set_hitted();
 	};
 
 }

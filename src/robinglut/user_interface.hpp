@@ -20,6 +20,7 @@ namespace robinglut
 		 * The background image.
 		 */
 		GLuint background_image;
+                
 		
 		/**
 		 * Reference to the player, used to retrieve force/speed
@@ -28,8 +29,7 @@ namespace robinglut
 		robinglut::player& player;
 		
 		void print_text(float x, float y, float z, const char* text, float r, float g, float b, float a);
-                void draw_crosshair();
-		void draw_force();
+                void draw_crosshair_force();
 		void draw_background();
 		void draw_counts();
 	public:

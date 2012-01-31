@@ -22,7 +22,7 @@ namespace robinglut
 	 * @param texture Targets texture    
 	 */
 	target::target(float x, float y, float z, float width, float height, GLuint texture)
-		: width(width), height(height), x(x), y(y), z(z), texture(texture)
+		: width(width), height(height), x(x), y(y), z(z), texture(texture), hitted(false)
 	{
 		
 	}
@@ -106,6 +106,23 @@ namespace robinglut
 		this->got_scored(this);
 	}
 
+         /**
+	 * Set the Target as hitted
+         */
+        void target::set_hitted()
+        {
+            this->hitted = true;
+        
+        }
+        
+        /*
+         * return true if the target is hitted
+         */
+        bool target::get_hitted()
+        { 
+            
+            return this->hitted;
+        }
 	/**
 	 * Displays the target.
          */
@@ -113,7 +130,10 @@ namespace robinglut
 	{
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, this->texture);
-		glColor3f(1, 1, 1);
+		
+                if(this->hitted)glColor4f(0, 0.5, 0, 0.5);
+                else            glColor3f(1, 1, 1);
+                
 		glPushMatrix();
 
 		glBegin(GL_QUADS);
