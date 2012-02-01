@@ -27,6 +27,7 @@ namespace robinglut
 		virtual void display();
 		//virtual void reshape(int width, int height);
 		virtual void on_keypress(unsigned char key, int x, int y);
+                virtual void on_mouse(int button, int state, int x, int y);
 	};
 
 }

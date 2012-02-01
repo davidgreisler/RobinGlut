@@ -53,18 +53,22 @@ namespace robinglut
          */
 	void level::increase_score(target* hit_target)
 	{
+                if(hit_target->get_hitted()) return;
+            
 		this->player->increase_score();
-		
-		// Remove the target.
-		
-		std::vector<target*>::iterator search;
-		search = std::find(this->targets.begin(), this->targets.end(), hit_target);
-		this->targets.erase(search);
-		
-		if (this->targets.empty())
+                hit_target->set_hitted();
+                
+                // Könnte man bestimmt besser machen?^^
+                int i = 0;
+		std::vector<target*>::const_iterator it;
+		for (it = this->targets.begin(); it != this->targets.end(); it++)
 		{
-			this->finished_event(123);
+                    if((*it)->get_hitted()) i++;
+			
 		}
+                
+                if (i == this->targets.size()) this->finished_event(123);
+     
 	}
 	
 	/**
@@ -77,11 +81,20 @@ namespace robinglut
 		glRotatef(this->anglex, 0, 0, 1);
 		glRotatef(this->angley, 0, 1, 0);
 		
+                // Mit pfeil mitfliegen
+                if(this->last_fired_arrow && this->last_fired_arrow->is_flying())
+                glTranslatef(-this->last_fired_arrow->get_x()+15,
+                             -this->last_fired_arrow->get_y(),
+                             -this->last_fired_arrow->get_z());
+                else if(this->last_fired_arrow && !this->last_fired_arrow->is_flying())
+                glTranslatef(0,0,0);
+                 
+                
 		this->player->display();
 
                 this->draw_targets();
 		this->draw_ground();
-		this->draw_sky();
+		//this->draw_sky();
 		this->draw_surrounding_area();
 		this->draw_arrows();
 	}
@@ -127,6 +140,10 @@ namespace robinglut
 		if (GLUT_LEFT_BUTTON == button)
 		{
 			button_idx = 0;
+                        //Menu clicked
+                        if(x > 860 && x <1010 && y > 15 && y < 60)
+                            this->finished_event(123);
+                        
 		}
 		else if (GLUT_MIDDLE_BUTTON == button)
 		{
@@ -147,6 +164,9 @@ namespace robinglut
 		}
 		
 		this->button_pressed[button_idx] = ((GLUT_DOWN == state) ? true : false);
+                
+                
+           
 	}
 	
 	/**
@@ -217,14 +237,10 @@ namespace robinglut
 		glPushMatrix();
 		glBegin(GL_QUADS);
 		glColor3f(1, 1, 1);
-		glTexCoord2f(0, 0);
-		glVertex3f(100, 0, 100);
-		glTexCoord2f(0, 2);
-		glVertex3f(-100, 0, 100);
-		glTexCoord2f(2, 2);
-		glVertex3f(-100, 0, -100);
-		glTexCoord2f(2, 0);
-		glVertex3f(100, 0, -100);
+		glTexCoord2f(0, 0); glVertex3f(500, 0, 500);
+		glTexCoord2f(0, 30); glVertex3f(-500, 0, 500);
+		glTexCoord2f(30, 30); glVertex3f(-500, 0, -500);
+		glTexCoord2f(30, 0); glVertex3f(500, 0, -500);
 		glEnd();
 
 		glPopMatrix();
@@ -238,15 +254,11 @@ namespace robinglut
 	{
 		glPushMatrix();
 		glBegin(GL_QUADS);
-		glColor3f(0.6, 0.6, 0.9);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(100, 100, 100);
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(-100, 100, 100);
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(-100, 100, -100);
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(100, 100, -100);
+		glColor3f(0.329, 0.501, 0.639);
+                    glTexCoord2f(0.0f, 0.0f); glVertex3f(200, 100, 200);
+                    glTexCoord2f(1.0f, 1.0f); glVertex3f(-200, 100, 200);
+                    glTexCoord2f(1.0f, 1.0f); glVertex3f(-200, 100, -200);
+                    glTexCoord2f(1.0f, 1.0f); glVertex3f(200, 100, -200);
 		glEnd();
 		glPopMatrix();
 	}
@@ -256,48 +268,42 @@ namespace robinglut
          */
 	void level::draw_surrounding_area()
 	{
+                int height = 250;
+                int width = 500;
+                int distance = 500;
+            
 		glEnable(GL_TEXTURE_2D);
 		glColor3f(1, 1, 1);
 		glBindTexture(GL_TEXTURE_2D, this->area_center_texture);
 
 		glPushMatrix();
 		glBegin(GL_QUADS);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(100, 0, 100);
-		glTexCoord2f(0.0f, 1.0f);
-		glVertex3f(100, 100, 100);
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(100, 100, -100);
-		glTexCoord2f(1.0f, 0.0f);
-		glVertex3f(100, 0, -100);
+                    glTexCoord2f(0.0f, 0.0f);  glVertex3f(distance, 0,     width);
+                    glTexCoord2f(0.0f, 1.0f);  glVertex3f(distance, height, width);
+                    glTexCoord2f(1.0f, 1.0f);  glVertex3f(distance, height, -width);
+                    glTexCoord2f(1.0f, 0.0f);  glVertex3f(distance, 0,     -width);
 		glEnd();
 		glPopMatrix();
 
 		glBindTexture(GL_TEXTURE_2D, this->area_left_texture);
 		glPushMatrix();
+             
 		glBegin(GL_QUADS);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(100, 0, -100);
-		glTexCoord2f(0.0f, 1.0f);
-		glVertex3f(100, 100, -100);
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(-100, 100, -100);
-		glTexCoord2f(1.0f, 0.0f);
-		glVertex3f(-100, 0, -100);
+                    glTexCoord2f(0.0f, 0.0f); glVertex3f(width, 0,        -distance);
+                    glTexCoord2f(0.0f, 1.0f); glVertex3f(width,  height,      -distance);
+                    glTexCoord2f(1.0f, 1.0f); glVertex3f(-width, height,     -distance);
+                    glTexCoord2f(1.0f, 0.0f); glVertex3f(-width, 0,       -distance);
 		glEnd();
 		glPopMatrix();
 
 		glBindTexture(GL_TEXTURE_2D, this->area_right_texture);
 		glPushMatrix();
+          
 		glBegin(GL_QUADS);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex3f(100, 0, 100);
-		glTexCoord2f(0.0f, 1.0f);
-		glVertex3f(100, 100, 100);
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex3f(-100, 100, 100);
-		glTexCoord2f(1.0f, 0.0f);
-		glVertex3f(-100, 0, 100);
+                    glTexCoord2f(0.0f, 0.0f); glVertex3f(width, 0, distance);
+                    glTexCoord2f(0.0f, 1.0f); glVertex3f(width, height, distance);
+                    glTexCoord2f(1.0f, 1.0f); glVertex3f(-width,height, distance);
+                    glTexCoord2f(1.0f, 0.0f); glVertex3f(-width, 0, distance);
 		glEnd();
 		glPopMatrix();
 		

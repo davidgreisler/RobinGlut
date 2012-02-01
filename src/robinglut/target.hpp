@@ -42,6 +42,23 @@ namespace robinglut
 		 * The texture of the butt.
 		 */
 		GLuint texture;
+                 
+                /* 
+                 * Is the target hitted?
+                 */
+                bool hitted;
+                
+                 /* 
+                 * When > 0 the target is animated
+                 */
+                float range;
+                
+                /*
+                 * reach the end of a range
+                 */
+                bool range_end;
+                float range_min;
+                float range_max;
 		
 	public:
 		target(float x, float y, float z, float width, float height, 
@@ -64,8 +81,12 @@ namespace robinglut
 		float get_height() const;
 		
 		void score();
-		
 		void display();
+                
+                bool get_hitted();
+                void set_hitted();
+                
+                void set_animated(float range);
 	};
 
 }

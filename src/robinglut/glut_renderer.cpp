@@ -92,11 +92,11 @@ namespace robinglut
 
 		// Light source 0.
 		
-		GLfloat light_position0[] = {0.0, 50, 0, 1};
-		GLfloat red[] = {255, 255, 255, 1};
+		GLfloat light_position0[] = {0.0, 20, 0, 1};
+		GLfloat white[] = {1, 1, 1, 1}; 
 
 		glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
-		glLightfv(GL_LIGHT0, GL_DIFFUSE, red);
+		glLightfv(GL_LIGHT0, GL_AMBIENT, white);
 		
 		// Activate light sources.
 
@@ -120,7 +120,7 @@ namespace robinglut
 		
 		// Specify the colors used to clear the color buffers.
 
-		glClearColor(0.0, 0.0, 0.0, 0.0);
+		glClearColor(0.329, 0.501, 0.639, 1);
 
 		// Activate smooth shading (the color of each pixel of a polygon is 
 		// calculated individually, unlike GL_FLAT where all pixels of a polygon
@@ -139,6 +139,7 @@ namespace robinglut
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                 
 	}
 
 	/**
@@ -212,7 +213,7 @@ namespace robinglut
 		glLoadIdentity();
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glScalef(1.0, 1.0, 1.0);
-		gluLookAt(0, 10, 0, 1, 10, 0, 0.0, 1.0, 0.0);
+		gluLookAt(0, 10, 0, 100, 10, 0, 0.0, 1.0, 0.0);
 
 		if (0 != registered_renderer->get_current_scene())
 		{

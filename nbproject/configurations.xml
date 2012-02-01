@@ -23,6 +23,7 @@
           <itemPath>src/robinglut/levels/level1.hpp</itemPath>
           <itemPath>src/robinglut/levels/level2.hpp</itemPath>
           <itemPath>src/robinglut/levels/level3.hpp</itemPath>
+          <itemPath>src/robinglut/levels/level4.hpp</itemPath>
         </logicalFolder>
         <itemPath>src/robinglut/arrow.hpp</itemPath>
         <itemPath>src/robinglut/game.hpp</itemPath>
@@ -60,6 +61,7 @@
           <itemPath>src/robinglut/levels/level1.cpp</itemPath>
           <itemPath>src/robinglut/levels/level2.cpp</itemPath>
           <itemPath>src/robinglut/levels/level3.cpp</itemPath>
+          <itemPath>src/robinglut/levels/level4.cpp</itemPath>
         </logicalFolder>
         <itemPath>src/robinglut/arrow.cpp</itemPath>
         <itemPath>src/robinglut/game.cpp</itemPath>

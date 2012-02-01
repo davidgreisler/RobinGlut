@@ -4,6 +4,7 @@
 #include "levels/level1.hpp"
 #include "levels/level2.hpp"
 #include "levels/level3.hpp"
+#include "levels/level4.hpp"
 
 namespace robinglut
 {
@@ -35,6 +36,7 @@ namespace robinglut
 	{
 		// @todo The old level is not freed here. Do this in a level 
 		// loader?!
+                // Man sollte besser die levels in Liste speichern als in Dateien..
 		
 		switch (this->current_level_index)
 		{
@@ -42,7 +44,9 @@ namespace robinglut
 			        break;
 			case 2: this->start_level(new level_3(this->player));
 			        break;
-			case 3: this->game_over_event(this->player->get_score());
+                        case 3: this->start_level(new level_4(this->player));
+			        break;
+			case 4: this->game_over_event(this->player->get_score());
 			        break;
 		}
 	}
@@ -71,7 +75,7 @@ namespace robinglut
 		this->player = new robinglut::player(10);
 		
 		this->current_level_index = 0;
-		this->start_level(new level_1(this->player));
+		this->start_level(new level_4(this->player));
 	}
 	
 }

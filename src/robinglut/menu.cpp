@@ -11,7 +11,7 @@ namespace robinglut
 	menu::menu()
 	{
 		raw_loader loader;
-		this->title = loader.load_file("images/title.raw", 770, 600, false);
+		this->title = loader.load_file("images/title.raw", 800, 600, false);
 	}
 
 	/**
@@ -64,5 +64,32 @@ namespace robinglut
 			case '3': this->option_selected_event(3); break;
 			case '4': this->option_selected_event(4); break;
 		}
+
 	}
+        
+        /**
+	 * Maus handler.
+	 * 
+	 * 
+         * @param button Button key.
+         * @param state right or left.
+         * @param x X coordinate
+         * @param y Y coordinate
+         * 
+         * Start: 500, 460 : 500, 400 : 930, 400 : 930, 460
+         * Heighscore: 500, 590: 500, 520: 920, 530 : 920, 600
+         * Exit: 630, 700: 630, 650: 790, 650 : 790, 700
+         */
+        void menu::on_mouse(int button, int state, int x, int y){
+            // start Game
+            if(x > 500 && x < 930 && y > 400 && y < 460)
+                this->option_selected_event(1);
+            //Exit
+            if(x > 630 && x < 790 && y > 650 && y < 700)
+                this->option_selected_event(4);
+            //Heighscore
+            if(x > 630 && x < 790 && y > 700 && y < 790)
+                this->option_selected_event(3);
+
+        }
 }

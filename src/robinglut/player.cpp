@@ -74,9 +74,9 @@ namespace robinglut
 			int drawing_time = current_time - this->start_time;
 			force = drawing_time / 100;
 			
-			if (force >20.0f)
+			if (force >24.0f)
 			{
-				force = 20.0f;
+				force = 24.0f;
 			}
 		}
 		
