@@ -81,6 +81,16 @@ namespace robinglut
 		glRotatef(this->anglex, 0, 0, 1);
 		glRotatef(this->angley, 0, 1, 0);
 		
+                if(this->last_fired_arrow && this->last_fired_arrow->is_flying())
+                glTranslatef(-this->last_fired_arrow->get_x()+15,
+                             -this->last_fired_arrow->get_y(),
+                             -this->last_fired_arrow->get_z());
+                else if(this->last_fired_arrow && !this->last_fired_arrow->is_flying())
+                glTranslatef(0,
+                             0,
+                             0);
+                 
+                
 		this->player->display();
 
                 this->draw_targets();
@@ -151,6 +161,7 @@ namespace robinglut
 		}
 		
 		this->button_pressed[button_idx] = ((GLUT_DOWN == state) ? true : false);
+           
 	}
 	
 	/**

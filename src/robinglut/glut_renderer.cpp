@@ -213,7 +213,7 @@ namespace robinglut
 		glLoadIdentity();
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glScalef(1.0, 1.0, 1.0);
-		gluLookAt(0, 10, 0, 1, 10, 0, 0.0, 1.0, 0.0);
+		gluLookAt(0, 10, 0, 100, 10, 0, 0.0, 1.0, 0.0);
 
 		if (0 != registered_renderer->get_current_scene())
 		{

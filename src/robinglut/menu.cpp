@@ -11,7 +11,7 @@ namespace robinglut
 	menu::menu()
 	{
 		raw_loader loader;
-		this->title = loader.load_file("images/title.raw", 770, 600, false);
+		this->title = loader.load_file("images/title.raw", 800, 600, false);
 	}
 
 	/**
@@ -64,5 +64,7 @@ namespace robinglut
 			case '3': this->option_selected_event(3); break;
 			case '4': this->option_selected_event(4); break;
 		}
+                
+                std::cout << "key:" << key << std::endl;
 	}
 }
