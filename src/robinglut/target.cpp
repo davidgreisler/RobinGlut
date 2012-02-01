@@ -22,7 +22,7 @@ namespace robinglut
 	 * @param texture Targets texture    
 	 */
 	target::target(float x, float y, float z, float width, float height, GLuint texture)
-		: width(width), height(height), x(x), y(y), z(z), texture(texture), hitted(false)
+		: width(width), height(height), x(x), y(y), z(z), texture(texture), hitted(false), range(0), range_end(false)
 	{
 		
 	}
@@ -123,6 +123,20 @@ namespace robinglut
             
             return this->hitted;
         }
+        
+        /*
+         * set animated 
+         * @param range the x range 
+         * in this range the target go left and right
+         */
+        
+        void target::set_animated(float range){
+            this->range = range;
+            this->range_min = this->z - range;
+            this->range_max = this->z + range;
+            
+        }
+        
 	/**
 	 * Displays the target.
          */
@@ -135,7 +149,8 @@ namespace robinglut
                 else            glColor3f(1, 1, 1);
                 
 		glPushMatrix();
-
+                
+                
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
 		glVertex3f(this->x, y, z);
@@ -146,8 +161,19 @@ namespace robinglut
 		glTexCoord2f(1, 0);
 		glVertex3f(this->x, y, this->z + this->width);
 		glEnd();
-
 		glPopMatrix();
 		glDisable(GL_TEXTURE_2D);
+                
+                if(range && !this->hitted){
+                    if(this->z < this->range_max && !range_end)
+                        this->z++;
+                    else if(this->z > this->range_min && range_end)
+                        this->z--;
+                    else range_end = range_end  ? false: true;
+                        
+                
+                }
+                
+                
 	}
 }
