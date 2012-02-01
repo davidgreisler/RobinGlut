@@ -81,14 +81,13 @@ namespace robinglut
 		glRotatef(this->anglex, 0, 0, 1);
 		glRotatef(this->angley, 0, 1, 0);
 		
+                // Mit pfeil mitfliegen
                 if(this->last_fired_arrow && this->last_fired_arrow->is_flying())
                 glTranslatef(-this->last_fired_arrow->get_x()+15,
                              -this->last_fired_arrow->get_y(),
                              -this->last_fired_arrow->get_z());
                 else if(this->last_fired_arrow && !this->last_fired_arrow->is_flying())
-                glTranslatef(0,
-                             0,
-                             0);
+                glTranslatef(0,0,0);
                  
                 
 		this->player->display();
@@ -141,6 +140,10 @@ namespace robinglut
 		if (GLUT_LEFT_BUTTON == button)
 		{
 			button_idx = 0;
+                        //Menu clicked
+                        if(x > 860 && x <1010 && y > 15 && y < 60)
+                            this->finished_event(123);
+                        
 		}
 		else if (GLUT_MIDDLE_BUTTON == button)
 		{
@@ -161,6 +164,8 @@ namespace robinglut
 		}
 		
 		this->button_pressed[button_idx] = ((GLUT_DOWN == state) ? true : false);
+                
+                
            
 	}
 	
@@ -233,9 +238,9 @@ namespace robinglut
 		glBegin(GL_QUADS);
 		glColor3f(1, 1, 1);
 		glTexCoord2f(0, 0); glVertex3f(500, 0, 500);
-		glTexCoord2f(0, 2); glVertex3f(-500, 0, 500);
-		glTexCoord2f(2, 2); glVertex3f(-500, 0, -500);
-		glTexCoord2f(2, 0); glVertex3f(500, 0, -500);
+		glTexCoord2f(0, 30); glVertex3f(-500, 0, 500);
+		glTexCoord2f(30, 30); glVertex3f(-500, 0, -500);
+		glTexCoord2f(30, 0); glVertex3f(500, 0, -500);
 		glEnd();
 
 		glPopMatrix();
